@@ -1,4 +1,4 @@
-const ENV = "qa";
+const ENV = "prod";
 const API_BASE_URL = {
     "dev": "https://dev.qffer.in/qbshopper",
     "qa": "https://qa.qffer.in/qbshopper",
@@ -21,7 +21,7 @@ function getQueryItems() {
 async function verifyEmail(key, id) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    let url = `${API_BASE_URL[ENV]}/customer/auth/verify/cx/email/${key}`;
+    let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/auth/verify/cx/email/${key}`;
     let body = JSON.stringify({
         value: id
     });
@@ -96,7 +96,7 @@ function onVerifySuccess() {
         </div>
         <div class="qb-image-wrap">
             <div class="qb-image-container qb-translate-item qb-translate-item-slow">
-                <img src="./assets/images/hero-mockup.png" alt="qffer mockup" class="qb-hero-image">
+                <img src="../../assets/images/hero-mockup.png" alt="qffer mockup" class="qb-hero-image">
             </div>
         </div>`;
     try {
