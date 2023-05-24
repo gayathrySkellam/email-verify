@@ -1,0 +1,79 @@
+.qb-signup-wrapper{
+    min-height: 100vh;
+}
+.qb-signup-bg-wrap{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.qb-signup-bg{
+    background: linear-gradient(60.67deg, #E64980 8.99%, #FF8787 90.01%);
+}
+.qb-form-wrap-scrollable{
+    min-height: 100%;
+    padding: 80px 16px;
+}
+.qb-signup-mockup{
+    width: 60%;
+    height: auto;
+}
+.qb-signup-content{
+    z-index: 1;
+}
+.qb-signup-header{
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.qb-form-wrap{
+    width: 80%;
+    border-radius: 24px;
+    background: #f1f1f2;
+    box-shadow:  14px 14px 28px #dbdbdc,
+             -14px -14px 28px #ffffff;
+    overflow: hidden;
+}
+.qb-circle-bg{
+    top: -56%;
+    left: -38%;
+}
+@media only screen and (max-width: 992px){
+    .qb-main-body-wrap{
+        overflow-x: hidden;
+    }
+    .qb-signup-wrapper{
+        padding: 100px 0;
+    }
+}
+@media only screen and (max-width: 767px){
+    .qb-form-wrap{
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: #fff0;
+    }
+    .qb-signup-wrapper{
+        padding: 60px 0;
+    }
+    .qb-signup-content{
+        width: 100vw;
+    }
+    .qb-form-wrap-scrollable{
+        padding: 0 16px;
+    }
+    .qb-btn-wrapper{
+        width: 100%;
+    }
+    a.qb-link-btn{
+        width: 100%;
+    }
+    button{
+        width: 100%;
+    }
+    h3.qb-title{
+        font-size: 22px;
+        line-height: 150%;
+    }
+}
