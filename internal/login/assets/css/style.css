@@ -1,0 +1,10 @@
+.qb-login-main-wrap{
+    min-height: 100vh;
+}
+.qb-login-main-wrap-bg{
+    top: 0;
+    left: 0;
+}
+.qb-login-bg-wrap{
+    background: linear-gradient(60.67deg, #E64980 8.99%, #FF8787 90.01%);
+}

@@ -148,6 +148,22 @@ p.qb-input-error-message.qb-error-active{
 .qb-btn-wrapper{
     width: max-content;
 }
+.qb-input-disabled.qb-input-wrap{
+    cursor: not-allowed;
+}
+.qb-input-disabled.qb-input-wrap input{
+    color: #374E4A;
+    outline: none;
+    background-color: #D5D8D8;
+    padding: 16px 24px;
+    border: 1px solid #D5D8D8;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    pointer-events: none;
+}
+.qb-input-disabled .qb-eye-icon-wrap{
+    pointer-events: none;
+}
 a.qb-link-btn{
     border: none;
     overflow: none;
@@ -276,6 +292,7 @@ button.qb-primary-btn.qb-btn-loading:hover{
     width: 80vw;
     max-width: 520px;
     min-height: 200px;
+    pointer-events: none;
     border-radius: 16px;
     background-color: #F1F2F2;
     box-shadow:  14px 14px 28px #1C282620;
@@ -283,7 +300,55 @@ button.qb-primary-btn.qb-btn-loading:hover{
 }
 .qb-modal-active{
     opacity: 1;
+    pointer-events: all;
     transform: translate(-50%, -50%);
+}
+.qb-select-element{
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.qb-options-wrapper{
+    bottom: -4px;
+    left: 0;
+    z-index: 5;
+    transform: translateY(60%);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background-color: #F1F2F2;
+    border: 1px solid #D2E5E2;
+    box-shadow:  10px 10px 20px #dbdbdc,
+             -10px -10px 20px #ffffff20;
+    border-radius: 8px;
+    transition: 0.4s ease-out;
+}
+.qb-options-wrapper.qb-select-active{
+    opacity: 1;
+    transform: translateY(100%);
+    pointer-events: all;
+}
+.qb-options-container{
+    opacity: 0;
+    transition: 0.4s ease-out;
+}
+.qb-select-active .qb-options-container{
+    opacity: 1;
+    transition: 0.4s ease-out 0.2s;
+}
+.qb-option-wrap{
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    background-color: #F1F2F2;
+}
+.qb-option-wrap:hover{
+    background-color: #D2E5E2;
+}
+p.qb-option-text{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    pointer-events: none;
 }
 @keyframes loadingAnime{
     from{ transform: rotate(0deg); }

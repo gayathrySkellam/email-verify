@@ -12,12 +12,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
     <link rel="manifest" href="../../site.webmanifest">
-    <title>Qffer | Signup</title>
+    <title>Qffer | Profile</title>
 </head>
 
 <body>
     <div class="conatainer-fluid px-0 qb-main-body-wrap d-flex flex-column align-items-stretch position-relative">
-        <div class="qb-loader d-flex align-items-center justify-content-center position-fixed" id="qb-loader-wrap">
+        <div class="qb-loader qb-wait-loader d-flex align-items-center justify-content-center position-fixed" id="qb-loader-wrap">
             <div class="qb-loader-border d-flex align-items-center justify-content-center">
                 <svg id="qb-preloader-icon" width="214" height="208" viewBox="0 0 214 208" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@
                     </defs>
                 </svg>
             </div>
-        </div>  
+        </div>
         <header class="qb-signup-header position-fixed d-none d-md-flex flex-column align-items-stretch">
             <div class="d-flex justify-content-center conatainer-fluid">
                 <div class="qb-content-container px-3 py-4">
@@ -46,47 +46,47 @@
                 </div>
             </div>
         </header>
-        <div
-            class="qb-signup-wrapper position-relative container-fluid d-flex flex-column flex-md-row justify-content-center align-items-stretch">
-            <div class="qb-signup-bg-wrap position-absolute d-lg-block d-none">
-                <div class="row h-100">
-                    <div class="col-lg-5">
-                        <div class="w-100 h-100 qb-signup-bg"></div>
-                    </div>
-                </div>
+        <div class="qb-signup-wrapper position-relative container-fluid px-0 d-flex flex-column flex-md-row justify-content-center align-items-stretch">
+            <div class="qb-signup-bg-wrap qb-signup-left position-absolute d-lg-block d-none">
+                <div class="w-100 h-100 qb-signup-bg"></div>
             </div>
             <div class="px-3 d-flex d-md-none flex-column align-items-center justify-content-center">
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M59.3233 56.5812L60 56.9576L59.6704 56.5071C55.846 51.2883 54.8553 44.5717 56.7919 38.3973C58.5036 32.9458 58.5708 27.1108 56.985 21.6214C55.3991 16.132 52.2306 11.2317 47.8754 7.53293C35.979 -2.58486 18.0252 -1.42252 7.53298 10.1404C3.02803 15.1101 0.38006 21.4847 0.0378759 28.1836C-0.304308 34.8826 1.68035 41.4938 5.65546 46.8967C9.63057 52.2996 15.3516 56.1618 21.8488 57.8288C28.3461 59.4957 35.2199 58.8648 41.3051 56.0429C47.0778 53.3711 53.7593 53.494 59.3233 56.5812ZM18.5342 19.6536C23.7998 14.1169 32.609 13.6489 38.4422 18.5849C40.6493 20.4524 42.2494 22.9357 43.0379 25.7172C43.8265 28.4988 43.7678 31.4524 42.8692 34.2004C42.3479 35.7475 42.2355 37.4031 42.5431 39.0065C42.8506 40.6099 43.5676 42.1064 44.6244 43.3508L44.7765 43.5283L44.5815 43.3996C43.2263 42.5053 41.6621 41.9783 40.0421 41.8699C38.422 41.7615 36.8016 42.0756 35.3393 42.7814C32.2728 44.2519 28.7877 44.6005 25.4906 43.7667C22.1935 42.9328 19.2932 40.9691 17.2945 38.2175C15.2958 35.4659 14.3252 32.1006 14.5518 28.7072C14.7783 25.3138 16.1875 22.1073 18.5342 19.6458V19.6536Z" fill="url(#paint0_linear_1002_17436)"/>
+                    <path
+                        d="M59.3233 56.5812L60 56.9576L59.6704 56.5071C55.846 51.2883 54.8553 44.5717 56.7919 38.3973C58.5036 32.9458 58.5708 27.1108 56.985 21.6214C55.3991 16.132 52.2306 11.2317 47.8754 7.53293C35.979 -2.58486 18.0252 -1.42252 7.53298 10.1404C3.02803 15.1101 0.38006 21.4847 0.0378759 28.1836C-0.304308 34.8826 1.68035 41.4938 5.65546 46.8967C9.63057 52.2996 15.3516 56.1618 21.8488 57.8288C28.3461 59.4957 35.2199 58.8648 41.3051 56.0429C47.0778 53.3711 53.7593 53.494 59.3233 56.5812ZM18.5342 19.6536C23.7998 14.1169 32.609 13.6489 38.4422 18.5849C40.6493 20.4524 42.2494 22.9357 43.0379 25.7172C43.8265 28.4988 43.7678 31.4524 42.8692 34.2004C42.3479 35.7475 42.2355 37.4031 42.5431 39.0065C42.8506 40.6099 43.5676 42.1064 44.6244 43.3508L44.7765 43.5283L44.5815 43.3996C43.2263 42.5053 41.6621 41.9783 40.0421 41.8699C38.422 41.7615 36.8016 42.0756 35.3393 42.7814C32.2728 44.2519 28.7877 44.6005 25.4906 43.7667C22.1935 42.9328 19.2932 40.9691 17.2945 38.2175C15.2958 35.4659 14.3252 32.1006 14.5518 28.7072C14.7783 25.3138 16.1875 22.1073 18.5342 19.6458V19.6536Z"
+                        fill="url(#paint0_linear_1002_17436)" />
                     <defs>
-                    <linearGradient id="paint0_linear_1002_17436" x1="4.65" y1="9.35939" x2="60.749" y2="21.3286" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#E64980"/>
-                    <stop offset="1" stop-color="#FF8787"/>
-                    </linearGradient>
+                        <linearGradient id="paint0_linear_1002_17436" x1="4.65" y1="9.35939" x2="60.749" y2="21.3286"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#E64980" />
+                            <stop offset="1" stop-color="#FF8787" />
+                        </linearGradient>
                     </defs>
-                    </svg>
-                    <h3 class="qb-title pt-3 mb-0 qb-sm-signup-title qb-signup-title-text">Create account</h3>
+                </svg>
+                <h3 class="qb-title pt-3 mb-0 qb-sm-signup-title qb-signup-title-text">Complete profile</h3>
             </div>
-            <div class="qb-content-container position-relative qb-signup-content">
-                <div class="row h-100">
-                    <div class="col-xl-5 col-lg-4">
-                        <div class="w-100 h-100 d-lg-flex align-items-center justify-content-center d-none">
-                            <img src="../../assets/images/signup-mockup.png" alt="signup-mockup"
-                                class="qb-signup-mockup">
-                        </div>
+            <div class="position-relative qb-signup-content d-flex align-items-stretch justify-content-center">
+                <div class="qb-signup-left">
+                    <div class="w-100 h-100 d-lg-flex align-items-center justify-content-center d-none">
+                        <img src="../../assets/images/signup-mockup.png" alt="signup-mockup"
+                            class="qb-signup-mockup">
                     </div>
-                    <div class="col-xl-7 col-lg-8">
+                </div>
+                <div class="qb-signup-right">
+                    <div class="w-100 qb-overflow-wrap">
                         <div class="w-100 d-flex align-items-md-center justify-content-center qb-form-wrap-scrollable">
                             <div class="qb-form-wrap d-flex flex-column align-items-stretch">
                                 <form class="qb-signup-form px-md-5 py-5 d-flex flex-column align-items-stretch"
                                     id="qb-signupform">
-                                    <h3 class="qb-title mb-0 pb-4 d-none d-md-block qb-signup-title-text">Signup for Qffer</h3>
+                                    <h3 class="qb-title mb-0 pb-4 d-none d-md-block qb-signup-title-text">Complete
+                                        Profile</h3>
                                     <div class="container-fluid px-0 pt-md-0">
                                         <div class="row gy-2">
                                             <div class="col-lg-12">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="name" class="pb-1">Name</label>
-                                                    <input type="text" name="name" id="qb-name" placeholder="John Doe" required>
+                                                    <input type="text" name="name" id="qb-name" placeholder="John Doe"
+                                                        required>
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
@@ -113,8 +113,8 @@
                                                         class="d-flex flex-column align-items-stretch position-relative">
                                                         <input type="password" name="password" id="qb-password"
                                                             placeholder="********" required>
-                                                        <div
-                                                            class="qb-eye-icon-wrap position-absolute d-flex h-100 align-items-center justify-content-center px-3" id="qb-eye-btn">
+                                                        <div class="qb-eye-icon-wrap position-absolute d-flex h-100 align-items-center justify-content-center px-3"
+                                                            id="qb-eye-btn">
                                                             <svg width="24" height="18" viewBox="0 0 24 18" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -129,31 +129,97 @@
                                             <div class="col-12">
                                                 <div class="d-flex align-items-center qb-resend-wrap d-none">
                                                     <p class="qb-tag pe-2 mb-0">Didn’t receive OTP?</p>
-                                                    <a class="qb-link qb-resend-otp-link d-flex align-items-center qb-link-disabled">Resend OTP <span class="qb-counter-wrap ps-1">(30s)</span></a>
+                                                    <a
+                                                        class="qb-link qb-resend-otp-link d-flex align-items-center qb-link-disabled">Resend
+                                                        OTP <span class="qb-counter-wrap ps-1">(30s)</span></a>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12">
+                                            <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="referral" class="pb-1">Referral Code</label>
-                                                    <input type="text" name="referral" id="qb-referral"
-                                                            placeholder="AXJBXY">
+                                                    <label for="country" class="pb-1">Country</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="COUNTRY">
+                                                        <input type="text" name="country" id="qb-country"
+                                                            class="qb-select-input" placeholder="India">
+                                                        <!-- <div class="qb-select-element qb-country-select position-absolute w-100 h-100"></div> -->
+                                                        <div
+                                                            class="qb-options-wrapper qb-country-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="city" class="pb-1">City</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="CITY">
+                                                        <input type="text" name="city" id="qb-city"
+                                                            class="qb-select-input" placeholder="Bangalore">
+                                                        <!-- <div class="qb-select-element qb-city-select position-absolute w-100 h-100"></div> -->
+                                                        <div
+                                                            class="qb-options-wrapper qb-city-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="date-of-birth" class="pb-1">Date of birth</label>
+                                                    <input type="date" name="date-of-birth" id="qb-date-of-birth"
+                                                        placeholder="01/12/1990">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="gender" class="pb-1">Gender</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="GENDER">
+                                                        <input type="text" name="gender" id="qb-gender"
+                                                            class="qb-select-input" placeholder="Select">
+                                                        <div
+                                                            class="qb-select-element qb-gender-select position-absolute w-100 h-100">
+                                                        </div>
+                                                        <div
+                                                            class="qb-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                            <div
+                                                                class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                                                                <div class="qb-option-wrap px-4 py-2" data-value="Male">
+                                                                    <p class="qb-option-text mb-0">Male</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Female">
+                                                                    <p class="qb-option-text mb-0">Female</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Other">
+                                                                    <p class="qb-option-text mb-0">Other</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <p class="qb-input-error-message pt-1 qb-general-error"></p>
                                             </div>
                                             <div class="col-lg-12">
-                                                <div class="w-100 pt-md-3 pt-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-end">
-                                                    <div class="qb-btn-wrapper pe-2 d-none d-md-flex">
-                                                        <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn" >Download Qffer</a>
+                                                <div
+                                                    class="w-100 pt-md-3 pt-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-end">
+                                                    <div class="qb-btn-wrapper pe-3 d-none d-md-flex">
+                                                        <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download
+                                                            Qffer</a>
                                                     </div>
                                                     <div class="qb-btn-wrapper">
-                                                        <button class="qb-btn qb-primary-btn" type="button" id="qb-signup-btn">
-                                                            Join Qffer 
+                                                        <button class="qb-btn qb-primary-btn" type="button"
+                                                            id="qb-signup-btn">
+                                                            Update
                                                             <span class="qb-btn-loader ms-2"></span>
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex d-md-none pt-4 pb-5 align-items-center justify-content-center">
+                                                    <div
+                                                        class="d-flex d-md-none pt-4 pb-5 align-items-center justify-content-center">
                                                         <p class="qb-tag pe-3 mb-0">Already have an account</p>
                                                         <a class="qb-link qb-download-btn d-flex">Download Qffer</a>
                                                     </div>
@@ -176,10 +242,11 @@
             Congratulations on signing up! Download Qffer and begin your personal saving experience with Qffer.
         </p>
         <div class="w-100 d-flex justify-content-end">
-            <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn" >Download Qffer</a>
+            <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download Qffer</a>
         </div>
     </div>
     <script src="../../assets/js/app.js"></script>
+    <script src="./assets/js/countryList.js"></script>
     <script src="./assets/js/app.js"></script>
 </body>
 
