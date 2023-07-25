@@ -110,7 +110,7 @@ p.qb-description{
     color: #2E6B60;
     transition: 0.3s ease;
 }
-.qb-input-wrap input{
+.qb-input-wrap input, .qb-input-wrap textarea{
     color: #1C2826;
     outline: none;
     background-color: #FFF0;
@@ -151,7 +151,7 @@ p.qb-input-error-message.qb-error-active{
 .qb-input-disabled.qb-input-wrap{
     cursor: not-allowed;
 }
-.qb-input-disabled.qb-input-wrap input{
+.qb-input-disabled.qb-input-wrap input, .qb-input-disabled.qb-input-wrap textarea{
     color: #374E4A;
     outline: none;
     background-color: #D5D8D8;
@@ -383,7 +383,7 @@ p.qb-option-text{
         font-size: 14px;
         line-height: 150%;
     }
-    .qb-input-wrap input{
+    .qb-input-wrap input, .qb-input-wrap textarea{
         padding: 12px 20px;
     }
     a.qb-link-btn{
