@@ -572,21 +572,21 @@ function removeLoadAnimations() {
 }
 
 async function checkQuery() {
-    removeLoadAnimations();
-    // let query = getQueryItems();
-    // if (query?.tx){
-    //     token = query.tx;
-    //     checkCustomerDetails();
-    // }
-    // else{
-    //     setTimeout(() => {
-    //         triggerErrorModal("Invalid link", "You seem to be using an invalid update link. Please use a valid link or download qffer to enjoy our services.");
-    //     }, 1000);
-    // }
-    // if (query?.cx && query?.k){
-    //     let response = await verifyEmail(query.k, query.cx);
-    //     if(response) console.log("success: ", response);
-    // }
+    // removeLoadAnimations();
+    let query = getQueryItems();
+    if (query?.tx){
+        token = query.tx;
+        checkCustomerDetails();
+    }
+    else{
+        setTimeout(() => {
+            triggerErrorModal("Invalid link", "You seem to be using an invalid update link. Please use a valid link or download qffer to enjoy our services.");
+        }, 1000);
+    }
+    if (query?.cx && query?.k){
+        let response = await verifyEmail(query.k, query.cx);
+        if(response) console.log("success: ", response);
+    }
 }
 
 function onFormSubmit() {
