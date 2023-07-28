@@ -163,11 +163,11 @@ async function resetScreen() {
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
-    const countryInput = document.querySelector("#qb-country");
+    // const countryInput = document.querySelector("#qb-country");
     const referralInput = document.querySelector("#qb-referral");
     const addressInput = document.querySelector("#qb-address");
-    const maritalInput = document.querySelector("#qb-marital-status");
-    const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    // const maritalInput = document.querySelector("#qb-marital-status");
+    // const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -185,10 +185,10 @@ async function resetScreen() {
     phoneInput.parentElement.classList.remove("d-none");
     referralInput.parentElement.classList.remove("d-none");
     addressInput.parentElement.classList.remove("d-none");
-    maritalInput.parentElement.parentElement.classList.remove("d-none");
+    // maritalInput.parentElement.parentElement.classList.remove("d-none");
     dobInput.parentElement.classList.remove("d-none");
     genderInput.parentElement.parentElement.classList.remove("d-none");
-    countryInput.parentElement.parentElement.classList.remove("d-none");
+    // countryInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value = "";
@@ -196,12 +196,12 @@ async function resetScreen() {
     phoneInput.value = "";
     referralInput.value = "";
     addressInput.value = "";
-    maritalInput.value = "";
-    anniversaryInput.value = "";
+    // maritalInput.value = "";
+    // anniversaryInput.value = "";
     passwordInput.value = "";
     dobInput.value = "";
     genderInput.value = "";
-    countryInput.value = "";
+    // countryInput.value = "";
     cityInput.value = "";
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
@@ -218,11 +218,11 @@ async function navigateToOtpScreen(body) {
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
-    const countryInput = document.querySelector("#qb-country");
+    // const countryInput = document.querySelector("#qb-country");
     const referralInput = document.querySelector("#qb-referral");
     const addressInput = document.querySelector("#qb-address");
-    const maritalInput = document.querySelector("#qb-marital-status");
-    const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    // const maritalInput = document.querySelector("#qb-marital-status");
+    // const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -236,11 +236,11 @@ async function navigateToOtpScreen(body) {
     phoneInput.parentElement.classList.add("d-none");
     referralInput.parentElement.classList.add("d-none");
     addressInput.parentElement.classList.add("d-none");
-    maritalInput.parentElement.parentElement.classList.add("d-none");
-    anniversaryInput.parentElement.classList.add("d-none");
+    // maritalInput.parentElement.parentElement.classList.add("d-none");
+    // anniversaryInput.parentElement.classList.add("d-none");
     dobInput.parentElement.classList.add("d-none");
     genderInput.parentElement.parentElement.classList.add("d-none");
-    countryInput.parentElement.parentElement.classList.add("d-none");
+    // countryInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
 
     resentOtpWrap.classList.remove("d-none");
@@ -379,7 +379,7 @@ async function onSignupFormSubmit() {
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
-    const countryInput = document.querySelector("#qb-country");
+    // const countryInput = document.querySelector("#qb-country");
 
     let name = nameInput.value;
     let email = emailInput.value;
@@ -388,7 +388,6 @@ async function onSignupFormSubmit() {
     let dob = dobInput.value;
     let gender = genderInput.value;
     let city = selectedCity;
-    let country = selectedCountry;
 
     let isPhoneValid = true;
     let isNameValid, isEmailValid, isPasswordValid = false;
@@ -405,7 +404,7 @@ async function onSignupFormSubmit() {
     if (password?.length) isPasswordValid = await passwordValidation(password);
     else isPasswordValid = false;
 
-    if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city && selectedCountry) {
+    if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city) {
         handleUpdate({ name, email, phone, password, gender, dob, city });
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
@@ -414,7 +413,7 @@ async function onSignupFormSubmit() {
         cityInput.parentElement.parentElement.classList.remove('qb-input-error');
         genderInput.parentElement.parentElement.classList.remove('qb-input-error');
         dobInput.parentElement.classList.remove('qb-input-error');
-        countryInput.parentElement.parentElement.classList.remove('qb-input-error');
+        // countryInput.parentElement.parentElement.classList.remove('qb-input-error');
     }
     else {
         if (!isNameValid) {
@@ -451,12 +450,12 @@ async function onSignupFormSubmit() {
             cityInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else cityInput.parentElement.parentElement.classList.remove('qb-input-error');
-        if (!selectedCountry) {
-            let errorMessage = "This is required field. Please enter a value.";
-            countryInput.parentElement.nextElementSibling.innerHTML = errorMessage;
-            countryInput.parentElement.parentElement.classList.add('qb-input-error');
-        }
-        else countryInput.parentElement.parentElement.classList.remove('qb-input-error');
+        // if (!selectedCountry) {
+        //     let errorMessage = "This is required field. Please enter a value.";
+        //     countryInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+        //     countryInput.parentElement.parentElement.classList.add('qb-input-error');
+        // }
+        // else countryInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!gender) {
             let errorMessage = "This is required field. Please enter a value.";
             genderInput.parentElement.nextElementSibling.innerHTML = errorMessage;
@@ -573,21 +572,21 @@ function removeLoadAnimations() {
 }
 
 async function checkQuery() {
-    // removeLoadAnimations();
-    let query = getQueryItems();
-    if (query?.tx){
-        token = query.tx;
-        checkCustomerDetails();
-    }
-    else{
-        setTimeout(() => {
-            triggerErrorModal("Invalid link", "You seem to be using an invalid update link. Please use a valid link or download qffer to enjoy our services.");
-        }, 1000);
-    }
-    if (query?.cx && query?.k){
-        let response = await verifyEmail(query.k, query.cx);
-        if(response) console.log("success: ", response);
-    }
+    removeLoadAnimations();
+    // let query = getQueryItems();
+    // if (query?.tx){
+    //     token = query.tx;
+    //     checkCustomerDetails();
+    // }
+    // else{
+    //     setTimeout(() => {
+    //         triggerErrorModal("Invalid link", "You seem to be using an invalid update link. Please use a valid link or download qffer to enjoy our services.");
+    //     }, 1000);
+    // }
+    // if (query?.cx && query?.k){
+    //     let response = await verifyEmail(query.k, query.cx);
+    //     if(response) console.log("success: ", response);
+    // }
 }
 
 function onFormSubmit() {
@@ -822,13 +821,19 @@ async function getCustomerData(){
     return result;
 }
 
+const setSelectedCountry=()=>{
+    selectedCountry = {"label":"United States","value":"USA"};
+    citiesInCountry = CITIES_LIST["USA"];
+}
+
 function startApp() {
     checkQuery();
     eyeBtnListener();
     signupButtonListener();
     resendClickListener();
     onBackdropClick();
-    countryInputListener();
+    // countryInputListener();
+    setSelectedCountry();
     cityInputListener();
     selectBoxListener();
 }
