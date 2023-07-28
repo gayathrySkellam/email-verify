@@ -30,6 +30,9 @@
     width: 60%;
     height: auto;
 }
+.qb-signup-sm-mockup{
+    width: 160px;
+}
 .qb-signup-content{
     z-index: 1;
 }
