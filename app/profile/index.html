@@ -20,7 +20,7 @@
         <div class="qb-loader qb-wait-loader d-flex align-items-center justify-content-center position-fixed" id="qb-loader-wrap">
             <div class="qb-loader-border d-flex align-items-center justify-content-center">
                 <svg id="qb-preloader-icon" width="214" height="208" viewBox="0 0 214 208" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" class="d-none">
+                    xmlns="http://www.w3.org/2000/svg">
                     <path class="qb-preloader-icon-path"
                         d="M209.631 197.777L212 199.094L210.846 197.517C197.461 179.251 193.994 155.743 200.772 134.133C206.763 115.053 206.998 94.6301 201.447 75.4172C195.897 56.2043 184.807 39.0533 169.564 26.1077C127.927 -9.30457 65.0882 -5.23639 28.3654 35.2338C12.5981 52.6279 3.33021 74.9389 2.13257 98.3852C0.934921 121.831 7.88121 144.971 21.7941 163.881C35.707 182.791 55.7305 196.309 78.4709 202.143C101.211 207.977 125.269 205.769 146.568 195.893C166.772 186.541 190.157 186.971 209.631 197.777ZM66.8698 68.5301C85.2994 49.1516 116.132 47.5134 136.548 64.7895C144.272 71.3259 149.873 80.0173 152.633 89.7528C155.393 99.4883 155.187 109.826 152.042 119.444C150.218 124.859 149.824 130.653 150.901 136.265C151.977 141.877 154.487 147.115 158.185 151.47L158.718 152.092L158.035 151.641C153.292 148.511 147.817 146.666 142.147 146.287C136.477 145.908 130.806 147.007 125.688 149.477C114.955 154.624 102.757 155.844 91.2171 152.926C79.6772 150.007 69.5262 143.134 62.5308 133.504C55.5353 123.873 52.1384 112.094 52.9312 100.218C53.724 88.3409 58.6563 77.1181 66.8698 68.5028V68.5301Z"
                         stroke="url(#logo_fill_gradiant)" stroke-width="4" fill="url(#logo_fill_gradiant)"
@@ -35,30 +35,40 @@
                 </svg>
             </div>
         </div>
-        <!-- <header class="qb-signup-header position-fixed d-none d-md-flex flex-column align-items-stretch">
+        <header class="qb-signup-header position-fixed d-none d-md-flex flex-column align-items-stretch">
             <div class="d-flex justify-content-center conatainer-fluid">
                 <div class="qb-content-container px-3 py-4">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.3513 0.875358C9.32858 0.935019 7.34038 1.26423 5.42765 1.8558C3.57028 2.43084 1.81425 3.24021 0.156698 4.28534L0 4.38382L0.01797 4.41401C0.0273144 4.42982 1.15295 6.35189 2.51939 8.68368C3.88583 11.0162 5.00356 12.926 5.00356 12.9282C5.00356 12.9311 4.959 12.939 4.90509 12.9462C4.2366 13.0339 3.48115 13.2272 2.77528 13.4917C1.90913 13.8159 0.999131 14.2882 0.270269 14.7928C0.0963191 14.9128 -0.000718799 14.9861 0.00575039 14.9919C0.0309084 15.0156 0.222828 15.1507 0.3709 15.2499C1.53392 16.0298 2.87376 16.6128 4.15179 16.896C4.83608 17.0476 5.46072 17.113 6.1177 17.103C6.53101 17.0965 6.85016 17.0692 7.25915 17.0067C7.34757 16.993 7.38566 16.9901 7.38854 16.9952C7.39141 16.9995 8.43008 18.7727 9.69732 20.9356C10.9646 23.0985 12.0025 24.8682 12.0047 24.8682C12.0068 24.8682 13.0448 23.0985 14.312 20.9356C15.5793 18.7727 16.6179 16.9995 16.6208 16.9952C16.6237 16.9901 16.6618 16.993 16.7502 17.0067C17.3942 17.1051 18.0347 17.1296 18.65 17.08C20.1681 16.9556 21.7825 16.3993 23.2675 15.4893C23.4961 15.3491 23.9454 15.0458 24.0036 14.9919C24.0136 14.9825 23.7434 14.7899 23.4911 14.6267C22.801 14.1811 22.0168 13.7864 21.2448 13.4953C20.5462 13.2322 19.7742 13.0339 19.105 12.9462C19.0503 12.939 19.0058 12.9311 19.0058 12.9282C19.0058 12.926 20.1235 11.0162 21.4899 8.68368C22.8564 6.35189 23.982 4.42982 23.9914 4.41401L24.0093 4.38382L23.8526 4.28534C22.208 3.24812 20.4685 2.4445 18.6248 1.86946C16.8199 1.30592 14.9345 0.97599 13.029 0.889015C12.561 0.86817 11.8092 0.861701 11.3513 0.875358ZM17.0974 6.32745C17.9535 7.98788 18.6464 9.33994 18.6442 9.34569C18.6406 9.35432 16.5065 13.0001 16.5008 13.0065C16.5 13.0073 16.4282 13.0223 16.3419 13.0403C15.2155 13.2667 14.0482 13.7217 12.9592 14.3579C12.6674 14.529 12.3317 14.746 12.1111 14.9078L12.0047 14.9854L11.899 14.9078C11.6776 14.746 11.3419 14.529 11.0501 14.3579C9.95897 13.7203 8.79882 13.2682 7.66743 13.0403C7.58118 13.0231 7.5093 13.0073 7.50858 13.0065C7.4978 12.9936 5.36799 9.35072 5.36727 9.34353C5.36656 9.3385 7.60633 8.00441 10.4485 6.31595C14.7677 3.75127 15.5318 3.29915 15.539 3.30849C15.5433 3.31424 16.2449 4.67278 17.0974 6.32745ZM12.1017 15.0609C12.2217 15.1493 12.5165 15.3469 12.6882 15.454C13.1806 15.7603 13.7463 16.055 14.294 16.2893C14.3889 16.3295 14.4788 16.3669 14.4939 16.3727C14.5082 16.3777 14.5197 16.3849 14.519 16.3878C14.514 16.4007 12.0083 20.6768 12.0047 20.6768C12.0018 20.6768 9.49534 16.4007 9.49031 16.3878C9.48959 16.3849 9.50109 16.3777 9.51547 16.3727C9.53056 16.3669 9.62041 16.3295 9.71601 16.2893C10.2551 16.0586 10.8294 15.7603 11.3211 15.454C11.4929 15.3469 11.7876 15.1493 11.9076 15.0609C11.9587 15.0228 12.0025 14.9919 12.0047 14.9919C12.0068 14.9919 12.0507 15.0228 12.1017 15.0609Z" fill="#FCFCFC"/>
-                        <path d="M9.35583 9.35429C9.20135 9.38303 9.07489 9.43333 8.94771 9.5174C8.71563 9.67116 8.55612 9.90612 8.49576 10.1856C8.47277 10.292 8.47277 10.5061 8.49576 10.6124C8.54103 10.8194 8.63803 10.9997 8.78461 11.1463C8.93046 11.2914 9.11656 11.3927 9.32349 11.4373C9.39678 11.4531 9.59222 11.4596 9.6691 11.4488C9.91915 11.4136 10.1347 11.3029 10.3057 11.1219C10.4106 11.0112 10.4882 10.8804 10.5378 10.7303C10.5759 10.6167 10.5895 10.5255 10.5895 10.399C10.5895 10.1087 10.4853 9.85726 10.2798 9.65104C10.1282 9.50015 9.95867 9.40746 9.74742 9.36076C9.67054 9.34351 9.43343 9.3392 9.35583 9.35429Z" fill="#FCFCFC"/>
-                        <path d="M14.3053 9.35286C14.0732 9.39453 13.8936 9.48794 13.7298 9.65104C13.5703 9.81127 13.469 10.006 13.4323 10.223C13.4158 10.3178 13.4158 10.4802 13.4323 10.5751C13.5092 11.0328 13.8735 11.3827 14.3405 11.4488C14.4174 11.4596 14.6128 11.4531 14.6861 11.4373C14.7745 11.4179 14.8859 11.3776 14.9649 11.3367C15.2487 11.1887 15.4449 10.9293 15.5139 10.6124C15.5369 10.5061 15.5369 10.292 15.5139 10.1856C15.4686 9.97725 15.3723 9.79906 15.225 9.65176C15.0813 9.50734 14.9139 9.41393 14.7149 9.36651C14.6509 9.35142 14.6179 9.34783 14.4993 9.34567C14.4038 9.34423 14.342 9.34639 14.3053 9.35286Z" fill="#FCFCFC"/>
-                        </svg>                        
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23.7293 22.3745L24 22.525L23.8682 22.3448C22.3384 20.2573 21.9421 17.5707 22.7167 15.1009C23.4015 12.9203 23.4283 10.5863 22.794 8.39054C22.1596 6.19478 20.8922 4.23467 19.1502 2.75517C14.3916 -1.29195 7.21009 -0.827016 3.01319 3.79815C1.21121 5.78605 0.152024 8.33587 0.0151504 11.0154C-0.121723 13.695 0.672139 16.3395 2.26218 18.5007C3.85223 20.6618 6.14063 22.2067 8.73953 22.8735C11.3384 23.5403 14.0879 23.2879 16.522 22.1592C18.8311 21.0904 21.5037 21.1396 23.7293 22.3745ZM7.41369 7.60344C9.51994 5.38875 13.0436 5.20153 15.3769 7.17594C16.2597 7.92296 16.8997 8.91626 17.2152 10.0289C17.5306 11.1415 17.5071 12.3229 17.1477 13.4221C16.9391 14.041 16.8942 14.7032 17.0172 15.3446C17.1402 15.9859 17.427 16.5846 17.8498 17.0823L17.9106 17.1533L17.8326 17.1018C17.2905 16.7441 16.6648 16.5333 16.0168 16.4899C15.3688 16.4466 14.7206 16.5722 14.1357 16.8545C12.9091 17.4427 11.5151 17.5822 10.1962 17.2487C8.8774 16.9151 7.71728 16.1296 6.9178 15.029C6.11832 13.9284 5.7301 12.5822 5.8207 11.2249C5.91131 9.86753 6.47501 8.58493 7.41369 7.60031V7.60344Z"
+                            fill="#FCFCFC" />
+                    </svg>
                 </div>
             </div>
-        </header> -->
+        </header>
         <div class="qb-signup-wrapper position-relative container-fluid px-0 d-flex flex-column flex-md-row justify-content-center align-items-stretch">
             <div class="qb-signup-bg-wrap qb-signup-left position-absolute d-lg-block d-none">
                 <div class="w-100 h-100 qb-signup-bg"></div>
             </div>
             <div class="px-3 d-flex d-md-none flex-column align-items-center justify-content-center">
-                <img src="../../assets/images/Pizzawalas_VERTICAL-YELLOW-OUTLINE.png" alt="signup-mockup"
-                    class="qb-signup-sm-mockup">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M59.3233 56.5812L60 56.9576L59.6704 56.5071C55.846 51.2883 54.8553 44.5717 56.7919 38.3973C58.5036 32.9458 58.5708 27.1108 56.985 21.6214C55.3991 16.132 52.2306 11.2317 47.8754 7.53293C35.979 -2.58486 18.0252 -1.42252 7.53298 10.1404C3.02803 15.1101 0.38006 21.4847 0.0378759 28.1836C-0.304308 34.8826 1.68035 41.4938 5.65546 46.8967C9.63057 52.2996 15.3516 56.1618 21.8488 57.8288C28.3461 59.4957 35.2199 58.8648 41.3051 56.0429C47.0778 53.3711 53.7593 53.494 59.3233 56.5812ZM18.5342 19.6536C23.7998 14.1169 32.609 13.6489 38.4422 18.5849C40.6493 20.4524 42.2494 22.9357 43.0379 25.7172C43.8265 28.4988 43.7678 31.4524 42.8692 34.2004C42.3479 35.7475 42.2355 37.4031 42.5431 39.0065C42.8506 40.6099 43.5676 42.1064 44.6244 43.3508L44.7765 43.5283L44.5815 43.3996C43.2263 42.5053 41.6621 41.9783 40.0421 41.8699C38.422 41.7615 36.8016 42.0756 35.3393 42.7814C32.2728 44.2519 28.7877 44.6005 25.4906 43.7667C22.1935 42.9328 19.2932 40.9691 17.2945 38.2175C15.2958 35.4659 14.3252 32.1006 14.5518 28.7072C14.7783 25.3138 16.1875 22.1073 18.5342 19.6458V19.6536Z"
+                        fill="url(#paint0_linear_1002_17436)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_1002_17436" x1="4.65" y1="9.35939" x2="60.749" y2="21.3286"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#E64980" />
+                            <stop offset="1" stop-color="#FF8787" />
+                        </linearGradient>
+                    </defs>
+                </svg>
                 <h3 class="qb-title pt-3 mb-0 qb-sm-signup-title qb-signup-title-text">Complete profile</h3>
             </div>
             <div class="position-relative qb-signup-content d-flex align-items-stretch justify-content-center">
                 <div class="qb-signup-left">
                     <div class="w-100 h-100 d-lg-flex align-items-center justify-content-center d-none">
-                        <img src="../../assets/images/Pizzawalas_VERTICAL-YELLOW-OUTLINE.png" alt="signup-mockup"
+                        <img src="../../assets/images/signup-mockup.png" alt="signup-mockup"
                             class="qb-signup-mockup">
                     </div>
                 </div>
@@ -74,7 +84,7 @@
                                         <div class="row gy-2">
                                             <div class="col-lg-12">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="name" class="pb-1">Name*</label>
+                                                    <label for="name" class="pb-1">Name</label>
                                                     <input type="text" name="name" id="qb-name" placeholder="John Doe"
                                                         required>
                                                     <p class="qb-input-error-message pt-1"></p>
@@ -82,7 +92,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="email" class="pb-1">Email*</label>
+                                                    <label for="email" class="pb-1">Email</label>
                                                     <input type="email" name="email" id="qb-email"
                                                         placeholder="johndoe@gmail.com" required>
                                                     <p class="qb-input-error-message pt-1"></p>
@@ -90,15 +100,45 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="phone" class="pb-1">Phone*</label>
+                                                    <label for="phone" class="pb-1">Phone</label>
                                                     <input type="number" name="phone" id="qb-phone"
                                                         placeholder="999 999 9999" required>
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="country" class="pb-1">Country</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="COUNTRY">
+                                                        <input type="text" name="country" id="qb-country"
+                                                            class="qb-select-input" placeholder="India">
+                                                        <!-- <div class="qb-select-element qb-country-select position-absolute w-100 h-100"></div> -->
+                                                        <div
+                                                            class="qb-options-wrapper qb-country-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="city" class="pb-1">City</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="CITY">
+                                                        <input type="text" name="city" id="qb-city"
+                                                            class="qb-select-input" placeholder="Bangalore">
+                                                        <!-- <div class="qb-select-element qb-city-select position-absolute w-100 h-100"></div> -->
+                                                        <div
+                                                            class="qb-options-wrapper qb-city-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-12">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="password" class="pb-1">Password*</label>
+                                                    <label for="password" class="pb-1">Password</label>
                                                     <div
                                                         class="d-flex flex-column align-items-stretch position-relative">
                                                         <input type="password" name="password" id="qb-password"
@@ -124,48 +164,9 @@
                                                         OTP <span class="qb-counter-wrap ps-1">(30s)</span></a>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="address" class="pb-1">Address</label>
-                                                    <textarea name="address" id="qb-address" rows="2"></textarea>
-                                                    <!-- <input type="number" name="phone" id="qb-phone"
-                                                        placeholder="999 999 9999" required> -->
-                                                    <p class="qb-input-error-message pt-1"></p>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="col-md-6">
-                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="country" class="pb-1">Country*</label>
-                                                    <div class="d-flex align-items-stretch flex-column position-relative"
-                                                        data-type="COUNTRY">
-                                                        <input type="text" name="country" id="qb-country"
-                                                            class="qb-select-input" placeholder="India">
-                                                        <div class="qb-select-element qb-country-select position-absolute w-100 h-100"></div>
-                                                        <div
-                                                            class="qb-options-wrapper qb-country-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
-                                                        </div>
-                                                    </div>
-                                                    <p class="qb-input-error-message pt-1"></p>
-                                                </div>
-                                            </div> -->
-                                            <div class="col-12">
-                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="city" class="pb-1">City*</label>
-                                                    <div class="d-flex align-items-stretch flex-column position-relative"
-                                                        data-type="CITY">
-                                                        <input type="text" name="city" id="qb-city"
-                                                            class="qb-select-input" placeholder="Bangalore">
-                                                        <!-- <div class="qb-select-element qb-city-select position-absolute w-100 h-100"></div> -->
-                                                        <div
-                                                            class="qb-options-wrapper qb-city-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
-                                                        </div>
-                                                    </div>
-                                                    <p class="qb-input-error-message pt-1"></p>
-                                                </div>
-                                            </div>
                                             <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="date-of-birth" class="pb-1">Date of birth*</label>
+                                                    <label for="date-of-birth" class="pb-1">Date of birth</label>
                                                     <input type="date" name="date-of-birth" id="qb-date-of-birth"
                                                         placeholder="01/12/1990">
                                                     <p class="qb-input-error-message pt-1"></p>
@@ -173,7 +174,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="gender" class="pb-1">Gender*</label>
+                                                    <label for="gender" class="pb-1">Gender</label>
                                                     <div class="d-flex align-items-stretch flex-column position-relative"
                                                         data-type="GENDER">
                                                         <input type="text" name="gender" id="qb-gender"
@@ -202,15 +203,7 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
-                                                    <label for="referral" class="pb-1">Referral Code/Number</label>
-                                                    <input type="text" name="referral" id="qb-referral"
-                                                        placeholder="ASXDEFG">
-                                                    <p class="qb-input-error-message pt-1"></p>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="col-md-6">
+                                            <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="marital-status" class="pb-1">Marital status</label>
                                                     <div class="d-flex align-items-stretch flex-column position-relative"
@@ -246,29 +239,29 @@
                                                     <input type="date" name="anniversary-date" id="qb-anniversary-date"
                                                         placeholder="01/12/1990">
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <div class="col-12">
                                                 <p class="qb-input-error-message pt-1 qb-general-error"></p>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div
                                                     class="w-100 pt-md-3 pt-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-end">
-                                                    <!-- <div class="qb-btn-wrapper pe-3 d-none d-md-flex">
+                                                    <div class="qb-btn-wrapper pe-3 d-none d-md-flex">
                                                         <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download
                                                             Qffer</a>
-                                                    </div> -->
+                                                    </div>
                                                     <div class="qb-btn-wrapper">
                                                         <button class="qb-btn qb-primary-btn" type="button"
                                                             id="qb-signup-btn">
-                                                            Signup
+                                                            Update
                                                             <span class="qb-btn-loader ms-2"></span>
                                                         </button>
                                                     </div>
-                                                    <!-- <div
+                                                    <div
                                                         class="d-flex d-md-none pt-4 pb-5 align-items-center justify-content-center">
                                                         <p class="qb-tag pe-3 mb-0">Already have an account</p>
                                                         <a class="qb-link qb-download-btn d-flex">Download Qffer</a>
-                                                    </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

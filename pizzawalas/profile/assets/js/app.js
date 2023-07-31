@@ -163,8 +163,11 @@ async function resetScreen() {
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
-    const countryInput = document.querySelector("#qb-country");
+    // const countryInput = document.querySelector("#qb-country");
     // const referralInput = document.querySelector("#qb-referral");
+    const addressInput = document.querySelector("#qb-address");
+    // const maritalInput = document.querySelector("#qb-marital-status");
+    // const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -181,19 +184,24 @@ async function resetScreen() {
     emailInput.parentElement.classList.remove("d-none");
     phoneInput.parentElement.classList.remove("d-none");
     // referralInput.parentElement.classList.remove("d-none");
+    addressInput.parentElement.classList.remove("d-none");
+    // maritalInput.parentElement.parentElement.classList.remove("d-none");
     dobInput.parentElement.classList.remove("d-none");
     genderInput.parentElement.parentElement.classList.remove("d-none");
-    countryInput.parentElement.parentElement.classList.remove("d-none");
+    // countryInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value = "";
     emailInput.value = "";
     phoneInput.value = "";
     // referralInput.value = "";
+    addressInput.value = "";
+    // maritalInput.value = "";
+    // anniversaryInput.value = "";
     passwordInput.value = "";
     dobInput.value = "";
     genderInput.value = "";
-    countryInput.value = "";
+    // countryInput.value = "";
     cityInput.value = "";
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
@@ -210,12 +218,16 @@ async function navigateToOtpScreen(body) {
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
-    const countryInput = document.querySelector("#qb-country");
+    // const countryInput = document.querySelector("#qb-country");
     // const referralInput = document.querySelector("#qb-referral");
+    const addressInput = document.querySelector("#qb-address");
+    // const maritalInput = document.querySelector("#qb-marital-status");
+    // const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
     const resentOtpWrap = document.querySelector(".qb-resend-wrap");
+
     customerId = body.customerId;
     pageType = "VERIFY_OTP";
 
@@ -223,9 +235,12 @@ async function navigateToOtpScreen(body) {
     emailInput.parentElement.classList.add("d-none");
     phoneInput.parentElement.classList.add("d-none");
     // referralInput.parentElement.classList.add("d-none");
+    addressInput.parentElement.classList.add("d-none");
+    // maritalInput.parentElement.parentElement.classList.add("d-none");
+    // anniversaryInput.parentElement.classList.add("d-none");
     dobInput.parentElement.classList.add("d-none");
     genderInput.parentElement.parentElement.classList.add("d-none");
-    countryInput.parentElement.parentElement.classList.add("d-none");
+    // countryInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
 
     resentOtpWrap.classList.remove("d-none");
@@ -363,6 +378,8 @@ async function onSignupFormSubmit() {
     const passwordInput = document.querySelector("#qb-password");
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
+    const cityInput = document.querySelector("#qb-city");
+    // const countryInput = document.querySelector("#qb-country");
 
     let name = nameInput.value;
     let email = emailInput.value;
@@ -372,6 +389,7 @@ async function onSignupFormSubmit() {
     let gender = genderInput.value;
     let city = selectedCity;
 
+    let isPhoneValid = true;
     let isNameValid, isEmailValid, isPasswordValid = false;
 
     if (name?.length) isNameValid = await nameValidation(name);
@@ -386,12 +404,16 @@ async function onSignupFormSubmit() {
     if (password?.length) isPasswordValid = await passwordValidation(password);
     else isPasswordValid = false;
 
-    if (isNameValid && isEmailValid && isPasswordValid) {
+    if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city) {
         handleUpdate({ name, email, phone, password, gender, dob, city });
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
         passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
         phoneInput.parentElement.classList.remove('qb-input-error');
+        cityInput.parentElement.parentElement.classList.remove('qb-input-error');
+        genderInput.parentElement.parentElement.classList.remove('qb-input-error');
+        dobInput.parentElement.classList.remove('qb-input-error');
+        // countryInput.parentElement.parentElement.classList.remove('qb-input-error');
     }
     else {
         if (!isNameValid) {
@@ -422,6 +444,30 @@ async function onSignupFormSubmit() {
             phoneInput.parentElement.classList.add('qb-input-error');
         }
         else phoneInput.parentElement.classList.remove('qb-input-error');
+        if (!city) {
+            let errorMessage = "This is required field. Please enter a value.";
+            cityInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            cityInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else cityInput.parentElement.parentElement.classList.remove('qb-input-error');
+        // if (!selectedCountry) {
+        //     let errorMessage = "This is required field. Please enter a value.";
+        //     countryInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+        //     countryInput.parentElement.parentElement.classList.add('qb-input-error');
+        // }
+        // else countryInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!gender) {
+            let errorMessage = "This is required field. Please enter a value.";
+            genderInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            genderInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else genderInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!dob) {
+            let errorMessage = "This is required field. Please enter a value.";
+            dobInput.nextElementSibling.innerHTML = errorMessage;
+            dobInput.parentElement.classList.add('qb-input-error');
+        }
+        else dobInput.parentElement.classList.remove('qb-input-error');
     }
 }
 
@@ -526,6 +572,7 @@ function removeLoadAnimations() {
 }
 
 async function checkQuery() {
+    // removeLoadAnimations();
     let query = getQueryItems();
     if (query?.tx){
         token = query.tx;
@@ -597,6 +644,14 @@ function onCountrySelect(data){
     console.log("clicked: ", selectedCountry, citiesInCountry)
 }
 
+function onMaritalChange(data){
+    const anniversaryInput = document.getElementById("qb-anniversary-date");
+
+    anniversaryInput.value = "";
+    if(data.value==="Married") anniversaryInput.parentElement.classList.remove("d-none");
+    else anniversaryInput.parentElement.classList.add("d-none");
+}
+
 function handleOptionClick(e) {
     const optionsWrap = e.target.parentElement.parentElement;
     const selectParent = optionsWrap.parentElement;
@@ -605,6 +660,7 @@ function handleOptionClick(e) {
     let selectedValue = e.target?.dataset?.value;
     if(type==="COUNTRY") onCountrySelect(e.target.dataset);
     else if(type==="CITY") selectedCity = selectedValue;
+    else if(type==="MARITAL") onMaritalChange(e.target.dataset);
     console.log("Click: ", selectInput, selectedValue);
     selectInput.value = selectedValue;
     closeSelectOptions(optionsWrap, type);
@@ -765,13 +821,19 @@ async function getCustomerData(){
     return result;
 }
 
+const setSelectedCountry=()=>{
+    selectedCountry = {"label":"United States","value":"USA"};
+    citiesInCountry = CITIES_LIST["USA"];
+}
+
 function startApp() {
     checkQuery();
     eyeBtnListener();
     signupButtonListener();
     resendClickListener();
     onBackdropClick();
-    countryInputListener();
+    // countryInputListener();
+    setSelectedCountry();
     cityInputListener();
     selectBoxListener();
 }

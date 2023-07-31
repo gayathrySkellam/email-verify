@@ -1,17 +1,28 @@
 .qb-signup-wrapper{
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 }
 .qb-signup-bg-wrap{
     top: 0;
     left: 0;
-    width: 100%;
     height: 100%;
+}
+.qb-signup-left{
+    width: 40vw;
+}
+.qb-signup-right{
+    width: 60vw;
 }
 .qb-signup-bg{
     background: linear-gradient(60.67deg, #E64980 8.99%, #FF8787 90.01%);
 }
+.qb-overflow-wrap{
+    height: 100%;
+    overflow: auto;
+}
 .qb-form-wrap-scrollable{
     min-height: 100%;
+    height: max-content;
     padding: 80px 16px;
 }
 .qb-signup-mockup{
@@ -28,16 +39,26 @@
     z-index: 10;
 }
 .qb-form-wrap{
-    width: 80%;
+    width: 66%;
     border-radius: 24px;
     background: #f1f1f2;
     box-shadow:  14px 14px 28px #dbdbdc,
              -14px -14px 28px #ffffff;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .qb-circle-bg{
     top: -56%;
     left: -38%;
+}
+::-webkit-datetime-edit-text { color: #7d8383;}
+::-webkit-datetime-edit-month-field { color: #7d8383; }
+::-webkit-datetime-edit-day-field { color: #7d8383; }
+::-webkit-datetime-edit-year-field { color: #7d8383; }
+::-webkit-calendar-picker-indicator { color: #7d8383; }
+@media only screen and (max-width: 1200px){
+    .qb-form-wrap{
+        width: 80%;
+    }
 }
 @media only screen and (max-width: 992px){
     .qb-main-body-wrap{
@@ -45,6 +66,18 @@
     }
     .qb-signup-wrapper{
         padding: 100px 0;
+        overflow: auto;
+    }
+    .qb-signup-left{
+        width: 0;
+        display: none;
+    }
+    .qb-signup-right{
+        width: 100vw;
+    }
+    .qb-overflow-wrap{
+        height: max-content;
+        overflow: unset;
     }
 }
 @media only screen and (max-width: 767px){
@@ -56,6 +89,7 @@
     }
     .qb-signup-wrapper{
         padding: 60px 0;
+        height: unset;
     }
     .qb-signup-content{
         width: 100vw;

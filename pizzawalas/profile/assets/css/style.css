@@ -14,7 +14,8 @@
     width: 60vw;
 }
 .qb-signup-bg{
-    background: linear-gradient(60.67deg, #E64980 8.99%, #FF8787 90.01%);
+    /* background: linear-gradient(60.67deg, #E64980 8.99%, #FF8787 90.01%); */
+    background-color: #231f20;
 }
 .qb-overflow-wrap{
     height: 100%;
@@ -28,6 +29,9 @@
 .qb-signup-mockup{
     width: 60%;
     height: auto;
+}
+.qb-signup-sm-mockup{
+    width: 160px;
 }
 .qb-signup-content{
     z-index: 1;
