@@ -242,7 +242,7 @@ async function handleResendOtp(){
     if(!isResendDisabled){
         let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/create/phone/verify`;
         let data = JSON.stringify({
-            "value": userData.phone
+            "value": `${phoneCountryCode}${userData.phone}`
         });
         let response = await apiPost(url, data);
         if(response?.message==="success"){
@@ -261,7 +261,7 @@ async function handleOtpVerify(otp){
         signupButton.classList.add("qb-btn-loading");
         let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/create/phone/verify/${otp}`;
         let data = JSON.stringify({
-            "value": userData.phone
+            "value": `${phoneCountryCode}${userData.phone}`
         });
         let response = await apiPost(url, data);
         if(response?.message==="success"){
@@ -314,7 +314,7 @@ async function handleSignup({name, email, phone, password, referral, city, dob, 
         let response = await apiPost(url, data);
         // let response = {message: "success", body: {customerId: "X"}}
         if(response?.message==="success"){
-            console.log("response: ", response);
+            console.log("response: ", data);
             userData = {name, email, phone};
             signupButton.classList.remove("qb-btn-loading");
             apiLoader=false;
