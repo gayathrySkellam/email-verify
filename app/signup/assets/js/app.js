@@ -1,9 +1,3 @@
-const ENV = "qa";
-const API_BASE_URL = {
-    "dev": "https://dev.qffer.in/qbshopper",
-    "qa": "https://qa.qffer.in/qbshopper",
-    "prod": "https://prod.qffer.in/qbshopper"
-};
 let apiLoader =false;
 let passwordHidden = true;
 let pageType = "SIGNUP";        //pageTypes: SIGNUP, VERIFY_OTP
@@ -363,28 +357,28 @@ async function onSignupFormSubmit(){
     }
     else{
         if(!isNameValid){
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Name cannot be empty. Please enter a value.";
             if(name?.length) errorMessage = await returnErrorTexts(name, "name");
             nameInput.nextElementSibling.innerHTML = errorMessage;
             nameInput.parentElement.classList.add('qb-input-error');
         }
         else nameInput.parentElement.classList.remove('qb-input-error');
         if(!isEmailValid){
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Email cannot be empty. Please enter a value.";
             if(email?.length) errorMessage = await returnErrorTexts(email, "email");
             emailInput.nextElementSibling.innerHTML = errorMessage;
             emailInput.parentElement.classList.add('qb-input-error');
         }
         else emailInput.parentElement.classList.remove('qb-input-error');
         if(!isPasswordValid){
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Password cannot be empty. Please enter a value.";
             if(password?.length) errorMessage = await returnErrorTexts(password, "password");
             passwordInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             passwordInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
         if(!isPhoneValid){
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Phone number cannot be empty. Please enter a value.";
             if(phone?.length) errorMessage = await returnErrorTexts(phone, "phone");
             phoneInput.nextElementSibling.innerHTML = errorMessage;
             phoneInput.parentElement.classList.add('qb-input-error');

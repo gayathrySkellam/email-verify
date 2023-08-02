@@ -1,12 +1,6 @@
-const ENV = "qa";
-const API_BASE_URL = {
-    "dev": "https://dev.qffer.in/qbshopper",
-    "qa": "https://qa.qffer.in/qbshopper",
-    "prod": "https://prod.qffer.in/qbshopper"
-};
 let apiLoader = false;
 let passwordHidden = true;
-let pageType = "SIGNUP";        //pageTypes: SIGNUP, VERIFY_OTP
+let pageType = "UPDATE";        //pageTypes: UPDATE, VERIFY_OTP
 let storeId;
 let storeReferral;
 let customerId;
@@ -164,14 +158,14 @@ async function resetScreen() {
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
     const countryInput = document.querySelector("#qb-country");
-    // const referralInput = document.querySelector("#qb-referral");
+    const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
     const resentOtpWrap = document.querySelector(".qb-resend-wrap");
-    pageType = "SIGNUP";
+    pageType = "UPDATE";
     customerId = null;
     userData = null;
     resendTries = 2;
@@ -183,7 +177,7 @@ async function resetScreen() {
     emailInput.parentElement.classList.remove("d-none");
     phoneInput.parentElement.classList.remove("d-none");
     maritalInput.parentElement.parentElement.classList.remove("d-none");
-    // referralInput.parentElement.classList.remove("d-none");
+    addressInput.parentElement.classList.remove("d-none");
     dobInput.parentElement.classList.remove("d-none");
     genderInput.parentElement.parentElement.classList.remove("d-none");
     countryInput.parentElement.parentElement.classList.remove("d-none");
@@ -194,7 +188,7 @@ async function resetScreen() {
     phoneInput.value = "";
     maritalInput.value = "";
     anniversaryInput.value = "";
-    // referralInput.value = "";
+    addressInput.value = "";
     passwordInput.value = "";
     dobInput.value = "";
     genderInput.value = "";
@@ -216,7 +210,7 @@ async function navigateToOtpScreen(body) {
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
     const countryInput = document.querySelector("#qb-country");
-    // const referralInput = document.querySelector("#qb-referral");
+    const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
@@ -229,7 +223,7 @@ async function navigateToOtpScreen(body) {
     nameInput.parentElement.classList.add("d-none");
     emailInput.parentElement.classList.add("d-none");
     phoneInput.parentElement.classList.add("d-none");
-    // referralInput.parentElement.classList.add("d-none");
+    addressInput.parentElement.classList.add("d-none");
     maritalInput.parentElement.parentElement.classList.add("d-none");
     anniversaryInput.parentElement.classList.add("d-none");
     dobInput.parentElement.classList.add("d-none");
@@ -374,6 +368,9 @@ async function onSignupFormSubmit() {
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
     const countryInput = document.querySelector("#qb-country");
+    const addressInput = document.querySelector("#qb-address");
+    const maritalInput = document.querySelector("#qb-marital-status");
+    const anniversaryInput = document.querySelector("#qb-anniversary-date");
 
     let name = nameInput.value;
     let email = emailInput.value;
@@ -382,6 +379,10 @@ async function onSignupFormSubmit() {
     let dob = dobInput.value;
     let gender = genderInput.value;
     let city = selectedCity;
+    let address = addressInput.value;
+    let country = countryInput.value;
+    let maritalStatus = maritalInput.value;
+    let anniversary = anniversaryInput.value;
 
     let isNameValid, isEmailValid, isPasswordValid = false;
 
@@ -410,21 +411,21 @@ async function onSignupFormSubmit() {
     }
     else {
         if (!isNameValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Name cannot be empty. Please enter a value.";
             if (name?.length) errorMessage = await returnErrorTexts(name, "name");
             nameInput.nextElementSibling.innerHTML = errorMessage;
             nameInput.parentElement.classList.add('qb-input-error');
         }
         else nameInput.parentElement.classList.remove('qb-input-error');
         if (!isEmailValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Email cannot be empty. Please enter a value.";
             if (email?.length) errorMessage = await returnErrorTexts(email, "email");
             emailInput.nextElementSibling.innerHTML = errorMessage;
             emailInput.parentElement.classList.add('qb-input-error');
         }
         else emailInput.parentElement.classList.remove('qb-input-error');
         if (!isPasswordValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Password cannot be empty. Please enter a value.";
             if (password?.length) errorMessage = await returnErrorTexts(password, "password");
             passwordInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             passwordInput.parentElement.parentElement.classList.add('qb-input-error');
@@ -438,25 +439,25 @@ async function onSignupFormSubmit() {
         // }
         // else phoneInput.parentElement.classList.remove('qb-input-error');
         if (!city) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "City cannot be empty. Please select a city.";
             cityInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             cityInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else cityInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!selectedCountry) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Country cannot be empty. Please select a country.";
             countryInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             countryInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else countryInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!gender) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Gender cannot be empty. Please select a value.";
             genderInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             genderInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else genderInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!dob) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Birth date cannot be empty. Please select a value.";
             dobInput.nextElementSibling.innerHTML = errorMessage;
             dobInput.parentElement.classList.add('qb-input-error');
         }
@@ -515,11 +516,35 @@ function setCustomerData(data){
     removeLoadAnimations();
 }
 
+function handleMerchantBranding(data){
+    const leftBg = document.querySelector(".qb-signup-bg");
+    const logoPositions = document.querySelectorAll(".qb-merchant-logo-replace");
+    const qfferHeader = document.querySelector(".qb-header-logo");
+
+    if(data.storeLogoUrl&& data.storeBrandColor) leftBg.style.background = data.storeBrandColor;
+    if(data.storeLogoUrl){
+        logoPositions.forEach(logo=>{
+            logo.src = data.storeLogoUrl;
+            logo.classList.add("qb-merchant-logo-rounded");
+            if(logo.classList.contains("qb-signup-mockup")){
+                logo.style.width = "200px";
+                logo.style.height = "200px";
+                logo.style.backgroundColor = "#FFF"
+                logo.style.objectFit = "contain";
+            }
+        });
+        qfferHeader.classList.add("d-none");
+    }
+}
+
 async function checkCustomerDetails(){
     let result = await getCustomerData();
     let response;
     if(result) response = JSON.parse(result);
-    if(response && response.message==="success") setCustomerData(response.body);
+    if(response && response.message==="success"){
+        handleMerchantBranding(response.body);
+        setCustomerData(response.body);
+    }
     else triggerErrorModal("Oops!", "We were unable to fetch your profile details. Please try again after sometime or use Qffer app to complete your profile.");
 }
 
@@ -583,7 +608,7 @@ async function checkQuery() {
 }
 
 function onFormSubmit() {
-    if (pageType === "SIGNUP") onSignupFormSubmit();
+    if (pageType === "UPDATE") onSignupFormSubmit();
     else if (pageType === "VERIFY_OTP") onOtpFormSubmit();
 }
 

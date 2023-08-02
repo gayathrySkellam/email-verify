@@ -50,6 +50,14 @@
     top: -56%;
     left: -38%;
 }
+.qb-sm-logo{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.qb-merchant-logo-rounded{
+    border-radius: 400px;
+}
 ::-webkit-datetime-edit-text { color: #7d8383;}
 ::-webkit-datetime-edit-month-field { color: #7d8383; }
 ::-webkit-datetime-edit-day-field { color: #7d8383; }

@@ -350,6 +350,9 @@ p.qb-option-text{
     line-height: 150%;
     pointer-events: none;
 }
+.qb-pointer-disabled{
+    pointer-events: none;
+}
 @keyframes loadingAnime{
     from{ transform: rotate(0deg); }
     to{ transform: rotate(360deg); }

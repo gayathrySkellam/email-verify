@@ -1,12 +1,6 @@
-const ENV = "qa";
-const API_BASE_URL = {
-    "dev": "https://dev.qffer.in/qbshopper",
-    "qa": "https://qa.qffer.in/qbshopper",
-    "prod": "https://prod.qffer.in/qbshopper"
-};
 let apiLoader = false;
 let passwordHidden = true;
-let pageType = "SIGNUP";        //pageTypes: SIGNUP, VERIFY_OTP
+let pageType = "UPDATE";        //pageTypes: UPDATE, VERIFY_OTP
 let storeId;
 let storeReferral;
 let customerId;
@@ -120,6 +114,29 @@ async function apiPost(url, data) {
     }
 }
 
+async function apiPut(url, data) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    if(token) myHeaders.append("token", token);
+    let response;
+    let requestOptions = {
+        method: 'PUT',
+        redirect: 'follow',
+        headers: myHeaders,
+        body: data,
+    };
+    try {
+        let result = await fetch(url, requestOptions);
+        response = await result.text();
+        if (response) return JSON.parse(response);
+        else return ({ message: "failure", body: "Something went wrong! Please try again after some time." });
+    } catch (error) {
+        console.log("error: ", error);
+        response = { message: "failure", body: "Something went wrong! Please try again after some time." };
+        return response;
+    }
+}
+
 function onCounterRun() {
     const resendCounter = document.querySelector(".qb-counter-wrap");
     resendCounter.parentElement.classList.add("qb-link-disabled");
@@ -172,7 +189,7 @@ async function resetScreen() {
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
     const resentOtpWrap = document.querySelector(".qb-resend-wrap");
-    pageType = "SIGNUP";
+    pageType = "UPDATE";
     customerId = null;
     userData = null;
     resendTries = 2;
@@ -316,7 +333,7 @@ async function handleUpdate({ name, email, phone, password, gender, dob, city })
         apiLoader = true;
         errorWrap.classList.remove("qb-error-active");
         signupButton.classList.add("qb-btn-loading");
-        let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/signupForm`;
+        let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/profile`;
         let body = {
             "name": name,
             "email": customerInfo.email? customerInfo.email: email.toLowerCase(),
@@ -327,7 +344,7 @@ async function handleUpdate({ name, email, phone, password, gender, dob, city })
         };
         if(!customerInfo.isPasswordSet) body["password"] = password;
         let data = JSON.stringify(body)
-        let response = await apiPost(url, data);
+        let response = await apiPut(url, data);
         if(response?.message==="success"){
             console.log("response: ", response);
             userData = {name, email, phone};
@@ -417,35 +434,35 @@ async function onSignupFormSubmit() {
     }
     else {
         if (!isNameValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Name cannot be empty. Please enter a value.";
             if (name?.length) errorMessage = await returnErrorTexts(name, "name");
             nameInput.nextElementSibling.innerHTML = errorMessage;
             nameInput.parentElement.classList.add('qb-input-error');
         }
         else nameInput.parentElement.classList.remove('qb-input-error');
         if (!isEmailValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Email cannot be empty. Please enter a value.";
             if (email?.length) errorMessage = await returnErrorTexts(email, "email");
             emailInput.nextElementSibling.innerHTML = errorMessage;
             emailInput.parentElement.classList.add('qb-input-error');
         }
         else emailInput.parentElement.classList.remove('qb-input-error');
         if (!isPasswordValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Password cannot be empty. Please enter a value.";
             if (password?.length) errorMessage = await returnErrorTexts(password, "password");
             passwordInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             passwordInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!isPhoneValid) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Phone number cannot be empty. Please enter a value.";
             if (phone?.length) errorMessage = await returnErrorTexts(phone, "phone");
             phoneInput.nextElementSibling.innerHTML = errorMessage;
             phoneInput.parentElement.classList.add('qb-input-error');
         }
         else phoneInput.parentElement.classList.remove('qb-input-error');
         if (!city) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "City cannot be empty. Please enter a valid city.";
             cityInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             cityInput.parentElement.parentElement.classList.add('qb-input-error');
         }
@@ -457,13 +474,13 @@ async function onSignupFormSubmit() {
         // }
         // else countryInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!gender) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Gender cannot be empty. Please select a value.";
             genderInput.parentElement.nextElementSibling.innerHTML = errorMessage;
             genderInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else genderInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!dob) {
-            let errorMessage = "This is required field. Please enter a value.";
+            let errorMessage = "Birth date cannot be empty. Please select a value.";
             dobInput.nextElementSibling.innerHTML = errorMessage;
             dobInput.parentElement.classList.add('qb-input-error');
         }
@@ -590,7 +607,7 @@ async function checkQuery() {
 }
 
 function onFormSubmit() {
-    if (pageType === "SIGNUP") onSignupFormSubmit();
+    if (pageType === "UPDATE") onSignupFormSubmit();
     else if (pageType === "VERIFY_OTP") onOtpFormSubmit();
 }
 
@@ -804,7 +821,7 @@ async function getCustomerData(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("token", token);
-    let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/signupForm`;
+    let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/profile`;
     let requestOptions = {
         method: 'GET',
         redirect: 'follow',

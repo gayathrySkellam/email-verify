@@ -1,3 +1,4 @@
+
 function removeLogs(){
     let origin = window.location.origin;
     if(!origin.includes("localhost") && !origin.includes("127.0.0.1")) console.log = function(){};
