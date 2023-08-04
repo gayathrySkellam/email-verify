@@ -1,4 +1,4 @@
-const ENV = "prod";
+const ENV = "qa";
 const API_BASE_URL = {
     "dev": "https://dev.qffer.in/qbshopper",
     "qa": "https://qa.qffer.in/qbshopper",
@@ -6,7 +6,17 @@ const API_BASE_URL = {
 };
 const CONFIG = {
     "PIZZAWALA": {
-        "amx": "DOU",
-        "ref": ""
+        "dev": {
+            "amx": "BSA",
+            "ref": ""
+        },
+        "qa": {
+            "amx": "BSA",
+            "ref": ""
+        },
+        "prod": {
+            "amx": "DOU",
+            "ref": ""
+        }
     }
 };

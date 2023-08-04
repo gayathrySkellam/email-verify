@@ -13,6 +13,26 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
     <link rel="manifest" href="../../site.webmanifest">
     <title>Qffer | Profile</title>
+    <script>
+        function getQueries() {
+            let queries = [], hash;
+            let queryString = window.location.href.slice(window.location.href.indexOf('?') + 1);
+            var hashes = queryString.split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                queries.push(hash[0]);
+                queries[hash[0]] = hash[1];
+            }
+            return {queries, queryString};
+        }
+
+        function checkRedirect(){
+            let {queries, queryString} = getQueries();
+            if(queries.redirection) window.location.href = `/${queries.redirection}/?${queryString}` 
+        }
+
+        checkRedirect();
+    </script>
 </head>
 
 <body>
@@ -103,7 +123,7 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-12">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="country" class="pb-1">Country*</label>
                                                     <div class="d-flex align-items-stretch flex-column position-relative"
@@ -113,6 +133,20 @@
                                                         <!-- <div class="qb-select-element qb-country-select position-absolute w-100 h-100"></div> -->
                                                         <div
                                                             class="qb-options-wrapper qb-country-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="state" class="pb-1">State*</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="STATE">
+                                                        <input type="text" name="state" id="qb-state"
+                                                            class="qb-select-input" placeholder="Karnataka">
+                                                        <div
+                                                            class="qb-options-wrapper qb-state-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
                                                         </div>
                                                     </div>
                                                     <p class="qb-input-error-message pt-1"></p>
@@ -133,6 +167,14 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
+                                            <!-- <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="zipcode" class="pb-1">Zip code*</label>
+                                                    <input type="text" name="zipcode" id="qb-zipcode"
+                                                        placeholder="40170">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div> -->
                                             <div class="col-lg-12">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="password" class="pb-1">Password*</label>

@@ -85,7 +85,7 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="email" class="pb-1">Email*</label>
                                                     <input type="email" name="email" id="qb-email"
@@ -93,11 +93,11 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="phone" class="pb-1">Phone*</label>
                                                     <div class="d-flex align-items-stretch w-100">
-                                                        <div class="d-flex align-items-stretch flex-column position-relative qb-country-code-select-wrapper me-3"
+                                                        <!-- <div class="d-flex align-items-stretch flex-column position-relative qb-country-code-select-wrapper me-3 qb-input-disabled"
                                                             data-type="COUNTRY_CODE">
                                                             <input type="text" name="country-code" id="qb-country-code"
                                                                 class="qb-select-input" placeholder="Select" value="+1">
@@ -170,7 +170,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <input type="number" name="phone" id="qb-phone" class="w-100"
                                                             placeholder="999 999 9999" required>
                                                     </div>
@@ -212,13 +212,27 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="state" class="pb-1">State*</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="STATE">
+                                                        <input type="text" name="state" id="qb-state"
+                                                            class="qb-select-input" placeholder="Texas">
+                                                        <div
+                                                            class="qb-options-wrapper qb-state-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="city" class="pb-1">City*</label>
                                                     <div class="d-flex align-items-stretch flex-column position-relative"
                                                         data-type="CITY">
                                                         <input type="text" name="city" id="qb-city"
-                                                            class="qb-select-input" placeholder="Minneapolis">
+                                                            class="qb-select-input" placeholder="Beverly Hills">
                                                         <div
                                                             class="qb-options-wrapper qb-city-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
                                                         </div>
@@ -226,6 +240,15 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
+                                            <div class="col-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="zipcode" class="pb-1">Zip code*</label>
+                                                    <input type="text" name="zipcode" id="qb-zipcode"
+                                                        placeholder="40170">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="col-md-6">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="date-of-birth" class="pb-1">Date of birth*</label>

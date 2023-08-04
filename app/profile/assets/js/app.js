@@ -10,15 +10,20 @@ let maxCount = 30;
 let isResendDisabled = true;
 let genderSelectOpen = false;
 let countrySelectOpen = false;
+let stateSelectOpen= false;
 let citiesSelctOpen = false;
 let selectedCountry;
+let selectedState;
 let selectedCity;
 let token;
 let customerInfo;
-let citiesInCountry =[];
+let citiesInState =[];
 let cityOptions = [];
 let countryOptions =[];
+let statesInCountry=[];
+let statesOptions=[];
 let cityOptionsLoader=false;
+let stateOptionsLoader = false;
 let countryOptionsLoader = false;
 
 function getQueryItems() {
@@ -56,6 +61,12 @@ async function nameValidation(name) {
 async function phoneValidation(phone) {
     let phoneNumberPattern = /^\d{10}$/;
     return phoneNumberPattern.test(phone);
+}
+
+/* Zipcode Validation */
+async function zipcodeValidation(zipcode) {
+	let zipcodeNumberPattern = /^\d{5}(-\d{4})?$/;
+	return zipcodeNumberPattern.test(zipcode);
 }
 
 /* Return error texts */
@@ -161,6 +172,8 @@ async function resetScreen() {
     const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    const stateInput = document.querySelector("#qb-state");
+    // const zipcodeInput = document.querySelector("#qb-zipcode");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -182,6 +195,8 @@ async function resetScreen() {
     genderInput.parentElement.parentElement.classList.remove("d-none");
     countryInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
+    stateInput.parentElement.parentElement.classList.remove("d-none");
+    // zipcodeInput.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value = "";
     emailInput.value = "";
@@ -193,7 +208,9 @@ async function resetScreen() {
     dobInput.value = "";
     genderInput.value = "";
     countryInput.value = "";
+    stateInput.value = "";
     cityInput.value = "";
+    // zipcodeInput.value = "";
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
     signupButton.innerHTML = "Join account";
@@ -210,6 +227,8 @@ async function navigateToOtpScreen(body) {
     const genderInput = document.querySelector("#qb-gender");
     const cityInput = document.querySelector("#qb-city");
     const countryInput = document.querySelector("#qb-country");
+    const stateInput = document.querySelector("#qb-state");
+    // const zipcodeInput = document.querySelector("#qb-zipcode");
     const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
@@ -230,6 +249,8 @@ async function navigateToOtpScreen(body) {
     genderInput.parentElement.parentElement.classList.add("d-none");
     countryInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
+    // zipcodeInput.parentElement.classList.add("d-none");
+    stateInput.parentElement.parentElement.classList.add("d-none");
 
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
@@ -294,9 +315,9 @@ async function handleOtpVerify(otp) {
     }
 }
 
-async function handleUpdate({ name, email, phone, password, gender, dob, city }) {
+async function handleUpdate({ name, email, phone, password, city, dob, address, gender, country, state  }) {
     console.log("data: ");
-    console.table({ name, email, phone, password, gender, dob, city });
+    // console.table({ name, email, phone, password, city, dob, address, gender, state, zipcode  });
     const signupButton = document.querySelector("#qb-signup-btn");
     const errorWrap = document.querySelector(".qb-general-error");
 
@@ -309,9 +330,12 @@ async function handleUpdate({ name, email, phone, password, gender, dob, city })
             "name": name,
             "email": customerInfo.email? customerInfo.email: email.toLowerCase(),
             "phone": customerInfo.phone? customerInfo.phone: phone,
+            "dateOfBirth": dob,
+            "address": address,
             "gender": gender,
+            "state": state,
             "city": city,
-            "dateOfBirth": dob         
+            "country": country,
         };
         if(!customerInfo.isPasswordSet) body["password"] = password;
         let data = JSON.stringify(body)
@@ -371,6 +395,8 @@ async function onSignupFormSubmit() {
     const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    const stateInput = document.querySelector("#qb-state");
+    // const zipcodeInput = document.querySelector("#qb-zipcode");
 
     let name = nameInput.value;
     let email = emailInput.value;
@@ -383,23 +409,19 @@ async function onSignupFormSubmit() {
     let country = countryInput.value;
     let maritalStatus = maritalInput.value;
     let anniversary = anniversaryInput.value;
+    // let zipcode = zipcodeInput.value;
+    let state = selectedState?.label
 
     let isNameValid, isEmailValid, isPasswordValid = false;
 
     if (name?.length) isNameValid = await nameValidation(name);
-    else isNameValid = false;
-
     if (email?.length) isEmailValid = await emailValidation(email);
-    else isEmailValid = false;
-
-    // if (phone?.length) isPhoneValid = await phoneValidation(phone);
-    // else isPhoneValid = false;
-
     if (password?.length) isPasswordValid = await passwordValidation(password);
-    else isPasswordValid = false;
+    // if(zipcode&& zipcode.length) isZipcodeValid = await zipcodeValidation(zipcode);
 
-    if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city) {
-        handleUpdate({ name, email, phone, password, gender, dob, city });
+
+    if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city&& state) {
+        handleUpdate({ name, email, phone, password, city, dob, address, gender, state});
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
         passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
@@ -408,6 +430,8 @@ async function onSignupFormSubmit() {
         genderInput.parentElement.parentElement.classList.remove('qb-input-error');
         dobInput.parentElement.classList.remove('qb-input-error');
         countryInput.parentElement.parentElement.classList.remove('qb-input-error');
+        // zipcodeInput.parentElement.classList.remove("qb-input-error");
+        stateInput.parentElement.parentElement.classList.remove("qb-input-error");
     }
     else {
         if (!isNameValid) {
@@ -444,6 +468,12 @@ async function onSignupFormSubmit() {
             cityInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else cityInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!state) {
+            let errorMessage = "State cannot be empty. Please enter a valid state.";
+            stateInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            stateInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else stateInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!selectedCountry) {
             let errorMessage = "Country cannot be empty. Please select a country.";
             countryInput.parentElement.nextElementSibling.innerHTML = errorMessage;
@@ -462,6 +492,13 @@ async function onSignupFormSubmit() {
             dobInput.parentElement.classList.add('qb-input-error');
         }
         else dobInput.parentElement.classList.remove('qb-input-error');
+        // if (!isZipcodeValid) {
+        //     let errorMessage = "Zipcode is required. Please enter a valid zipcode.";
+        //     if(zipcode && zipcode.length) errorMessage = "Invalid zipcode. Please enter a valid zipcode";
+        //     zipcodeInput.nextElementSibling.innerHTML = errorMessage;
+        //     zipcodeInput.parentElement.classList.add('qb-input-error');
+        // }
+        // else zipcodeInput.parentElement.classList.remove('qb-input-error');
     }
 }
 
@@ -640,8 +677,9 @@ function resendClickListener() {
 }
 
 function closeSelectOptions(optionsWrap, type) {
-    optionsWrap.classList.remove("qb-select-active");
+    if(optionsWrap) optionsWrap.classList.remove("qb-select-active");
     if (type === "COUNTRY") countrySelectOpen = false;
+    else if(type==="STATE") stateSelectOpen = false;
     else if (type === "CITY") citiesSelctOpen = false;
     else if (type === "GENDER") genderSelectOpen = false;
 }
@@ -649,17 +687,30 @@ function closeSelectOptions(optionsWrap, type) {
 function showSelectOptions(optionsWrap, type) {
     optionsWrap.classList.add("qb-select-active");
     if (type === "COUNTRY") countrySelectOpen = true;
+    else if(type==="STATE") stateSelectOpen = true;
     else if (type === "CITY") citiesSelctOpen = true;
     else if (type === "GENDER") genderSelectOpen = true;
 }
 
 function onCountrySelect(data){
+    const stateInput = document.getElementById("qb-state");
+    const cityInput = document.getElementById("qb-city");
+    stateInput.value = "";
+    cityInput.value = "";
+    selectedState = null;
+    selectedCity = null;
+    selectedCountry = {label: data.value, value: data.iso};
+    statesInCountry = STATES_LIST[data.iso];
+    console.log("clicked: ", selectedCountry, citiesInState)
+}
+
+function onStateSelect(data){
     const cityInput = document.getElementById("qb-city");
     cityInput.value = "";
     selectedCity = null;
-    selectedCountry = {label: data.value, value: data.iso};
-    citiesInCountry = CITIES_LIST[data.iso];
-    console.log("clicked: ", selectedCountry, citiesInCountry)
+    selectedState = {label: data.value, value: data.id};
+    citiesInState = CITIES_LIST[data.id];
+    console.log("clicked: ", selectedState, citiesInState);
 }
 
 function onMaritalChange(data){
@@ -678,6 +729,7 @@ function handleOptionClick(e) {
     let selectedValue = e.target?.dataset?.value;
     if(type==="COUNTRY") onCountrySelect(e.target.dataset);
     else if(type==="CITY") selectedCity = selectedValue;
+    if(type==="STATE") onStateSelect(e.target.dataset);
     else if(type==="MARITAL") onMaritalChange(e.target.dataset);
     console.log("Click: ", selectInput, selectedValue);
     selectInput.value = selectedValue;
@@ -700,6 +752,52 @@ function selectBoxListener() {
         selectElement.addEventListener("click", handleSelectClick);
         if (options?.length) options.forEach(option => option.addEventListener("click", handleOptionClick));
     })
+}
+
+function loadStateOptions() {
+    const optionsWrap = document.querySelector(".qb-state-options-wrapper");
+    const stateOptionContent = `<div class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                               ${statesOptions.map((state, i) => {
+        return (
+            ` <div class="qb-option-wrap px-4 py-2" data-value="${state.label}" data-id="${state.value}" data-index="${i}">
+                                        <p class="qb-option-text mb-0">${state.label}</p>
+                                    </div>`
+        )
+    }).join("")
+        }
+                            </div>`;
+    optionsWrap.innerHTML = stateOptionContent;
+    showSelectOptions(optionsWrap, "STATE");
+    const options = optionsWrap.querySelectorAll(".qb-option-wrap");
+    if (options?.length) options.forEach(option => option.addEventListener("click", handleOptionClick));
+}
+
+function removeStateOptions(){
+    const optionsWrap = document.querySelector(".qb-state-options-wrapper");
+    closeSelectOptions(optionsWrap, "STATE");
+    optionsWrap.innerHTML = "";
+}
+
+function handleStateInput(e){
+    let value = e.target.value;
+    if(value?.length && value.length>1){
+        console.log("Val: ", value);
+        if(!stateOptionsLoader){
+            statesOptions = [];
+            stateOptionsLoader = true;
+            statesInCountry.forEach(country=>{
+                if(country.label.toLowerCase().includes(value.toLowerCase())) statesOptions.push(country);
+            });
+            if(statesOptions?.length) loadStateOptions();
+            stateOptionsLoader = false;
+        }
+    }
+    else if(!value || !value.length)removeStateOptions();
+}
+
+function stateInputListener(){
+    const stateInput = document.getElementById("qb-state");
+    stateInput.addEventListener("input", handleStateInput);
 }
 
 function loadCountryOptions() {
@@ -753,8 +851,8 @@ function loadCityOptions() {
     const cityOptionContent = `<div class="qb-options-container py-2 d-flex align-items-stretch flex-column">
                                ${cityOptions.map((city, i) => {
         return (
-            ` <div class="qb-option-wrap px-4 py-2" data-value="${city}" data-index="${i}">
-                                        <p class="qb-option-text mb-0">${city}</p>
+            ` <div class="qb-option-wrap px-4 py-2" data-value="${city.label}" data-lat="${city.lat}" data-long="${city.long}" data-id="${city.value}" data-index="${i}">
+                                        <p class="qb-option-text mb-0">${city.label}</p>
                                     </div>`
         )
     }).join("")
@@ -775,12 +873,12 @@ function removeCityOptions(){
 function handleCityInput(e){
     let value = e.target.value;
     if(value?.length && value.length>2){
-        console.log("city: ", value, citiesInCountry);
+        console.log("city: ", value, citiesInState);
         if(!cityOptionsLoader){
             cityOptions = [];
             cityOptionsLoader = true;
-            citiesInCountry.forEach(city=>{
-                if(city.toLowerCase().includes(value.toLowerCase())) cityOptions.push(city);
+            citiesInState.forEach(city=>{
+                if(city.label.toLowerCase().includes(value.toLowerCase())) cityOptions.push(city);
             });
             if(cityOptions?.length) loadCityOptions();
             cityOptionsLoader = false;
@@ -846,6 +944,7 @@ function startApp() {
     resendClickListener();
     onBackdropClick();
     countryInputListener();
+    stateInputListener();
     cityInputListener();
     selectBoxListener();
 }

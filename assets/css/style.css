@@ -114,10 +114,11 @@ p.qb-description{
     color: #1C2826;
     outline: none;
     background-color: #FFF0;
-    padding: 16px 24px;
+    padding: 14px 22px;
     border: 1px solid #4A9689;
     border-radius: 8px;
     transition: 0.3s ease;
+    font-size: 16px;
 }
 .qb-input-wrap.qb-input-error label{
     color: #D90429;
@@ -148,14 +149,13 @@ p.qb-input-error-message.qb-error-active{
 .qb-btn-wrapper{
     width: max-content;
 }
-.qb-input-disabled.qb-input-wrap{
+.qb-input-disabled{
     cursor: not-allowed;
 }
-.qb-input-disabled.qb-input-wrap input, .qb-input-disabled.qb-input-wrap textarea{
+.qb-input-disabled input, .qb-input-disabled textarea{
     color: #374E4A;
     outline: none;
     background-color: #D5D8D8;
-    padding: 16px 24px;
     border: 1px solid #D5D8D8;
     border-radius: 8px;
     transition: 0.3s ease;
