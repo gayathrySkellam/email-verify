@@ -125,6 +125,29 @@ async function apiPost(url, data) {
     }
 }
 
+async function apiPut(url, data) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    if(token) myHeaders.append("token", token);
+    let response;
+    let requestOptions = {
+        method: 'PUT',
+        redirect: 'follow',
+        headers: myHeaders,
+        body: data,
+    };
+    try {
+        let result = await fetch(url, requestOptions);
+        response = await result.text();
+        if (response) return JSON.parse(response);
+        else return ({ message: "failure", body: "Something went wrong! Please try again after some time." });
+    } catch (error) {
+        console.log("error: ", error);
+        response = { message: "failure", body: "Something went wrong! Please try again after some time." };
+        return response;
+    }
+}
+
 function onCounterRun() {
     const resendCounter = document.querySelector(".qb-counter-wrap");
     resendCounter.parentElement.classList.add("qb-link-disabled");
@@ -325,7 +348,7 @@ async function handleUpdate({ name, email, phone, password, city, dob, address, 
         apiLoader = true;
         errorWrap.classList.remove("qb-error-active");
         signupButton.classList.add("qb-btn-loading");
-        let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/signupForm`;
+        let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/profile`;
         let body = {
             "name": name,
             "email": customerInfo.email? customerInfo.email: email.toLowerCase(),
@@ -339,7 +362,7 @@ async function handleUpdate({ name, email, phone, password, city, dob, address, 
         };
         if(!customerInfo.isPasswordSet) body["password"] = password;
         let data = JSON.stringify(body)
-        let response = await apiPost(url, data);
+        let response = await apiPut(url, data);
         if(response?.message==="success"){
             console.log("response: ", response);
             userData = {name, email, phone};
@@ -920,7 +943,7 @@ async function getCustomerData(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("token", token);
-    let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/signupForm`;
+    let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/profile`;
     let requestOptions = {
         method: 'GET',
         redirect: 'follow',
