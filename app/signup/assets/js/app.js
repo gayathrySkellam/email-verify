@@ -8,98 +8,22 @@ let userData;
 let resendTries = 2;
 let maxCount = 30;
 let isResendDisabled = true;
-
-function getQueryItems() {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
-}
-
-/* Email field Validation */
-async function emailValidation(email) {
-    let emailPattern = /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w{2,8})*(\.\w{2,8})+$/;
-    if(email?.length<=320) return emailPattern.test(email);
-    else return false;
-}
-
-/* Password field Validation */
-async function passwordValidation(password) {
-    let passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#\$%\^&\*]).{6,40}$/;
-    return passwordPattern.test(password);
-}
-
-/* Name validation */
-async function nameValidation(name){
-    let namePattern = /^(([a-zA-Z])+([ a-zA-Z]*)){2,50}$/;
-    if(name?.length<=50) return namePattern.test(name);
-    else return false;
-}
-
-/* Phone Number Validation */
-async function phoneValidation(phone) {
-	let phoneNumberPattern = /^\d{10}$/;
-	return phoneNumberPattern.test(phone);
-}
-
-/* Return error texts */
-async function returnErrorTexts(value, type){
-    let errorMessage="";
-    switch (type) {
-        case "email": {
-            if(value[value?.length-1]===" " || value[0]===" ") errorMessage= "Email should not begin or end with spaces.";
-            else if(value?.length>320) errorMessage= "Email should not be more than 320 characters";
-            else errorMessage = "Invalid email format. Please enter a valid email format";
-            break;
-        }
-        case "name": {
-            if(value?.length<2) errorMessage = "Name should be at least 2 characters";
-            else if(value[0]===" ") errorMessage = "Name should not begin with a space.";
-            else if(value?.length>50) errorMessage = "Name should not be more than 50 characters";
-            else errorMessage = "Name contains invalid characters. Please enter a valid name";
-            break;
-        }
-        case "phone": {
-            if(value[value?.length-1]===" " || value[0]===" ") errorMessage= "Phone number should not begin or end with spaces.";
-            else if(value.length!=10) errorMessage= "Phone number should have exactly 10 digits";
-            else errorMessage = "Phone number should have only digits.";
-            break;
-        }
-        case "password": {
-            if(value?.length<6) errorMessage = "Password should be at least 6 characters";
-            else if(value?.length>40) errorMessage = "Password should not be more than 40 characters";
-            else errorMessage = "Password Insecure! Password should contain alphabets, numbers and special characters";
-            break;
-        }
-    }
-    return errorMessage;
-}
-
-async function apiPost(url, data){
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    let response;
-    let requestOptions = {
-        method: 'POST',
-        redirect: 'follow',
-        headers: myHeaders,
-        body: data,
-    };
-    try {
-        let result = await fetch(url, requestOptions);
-        response = await result.text();
-        if(response) return JSON.parse(response);
-        else return({ message: "failure", body: "Something went wrong! Please try again after some time." });
-    } catch (error) {
-        console.log("error: ", error);
-        response = { message: "failure", body: "Something went wrong! Please try again after some time." };
-        return response;
-    }
-}
+let genderSelectOpen = false;
+let countrySelectOpen = false;
+let stateSelectOpen= false;
+let citiesSelctOpen = false;
+let selectedCountry;
+let selectedState;
+let selectedCity;
+let customerInfo;
+let citiesInState =[];
+let cityOptions = [];
+let countryOptions =[];
+let statesInCountry=[];
+let statesOptions=[];
+let cityOptionsLoader=false;
+let stateOptionsLoader = false;
+let countryOptionsLoader = false;
 
 function onCounterRun(){
     const resendCounter = document.querySelector(".qb-counter-wrap");
@@ -153,6 +77,15 @@ async function resetScreen(){
     const emailInput = document.querySelector("#qb-email");
     const phoneInput = document.querySelector("#qb-phone");
     const referralInput = document.querySelector("#qb-referral");
+    const dobInput = document.querySelector("#qb-date-of-birth");
+    const genderInput = document.querySelector("#qb-gender");
+    const cityInput = document.querySelector("#qb-city");
+    const countryInput = document.querySelector("#qb-country");
+    const addressInput = document.querySelector("#qb-address");
+    const maritalInput = document.querySelector("#qb-marital-status");
+    const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    const stateInput = document.querySelector("#qb-state");
+
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -168,12 +101,27 @@ async function resetScreen(){
     emailInput.parentElement.classList.remove("d-none");
     phoneInput.parentElement.classList.remove("d-none");
     referralInput.parentElement.classList.remove("d-none");
+    maritalInput.parentElement.parentElement.classList.remove("d-none");
+    addressInput.parentElement.classList.remove("d-none");
+    dobInput.parentElement.classList.remove("d-none");
+    genderInput.parentElement.parentElement.classList.remove("d-none");
+    countryInput.parentElement.parentElement.classList.remove("d-none");
+    cityInput.parentElement.parentElement.classList.remove("d-none");
+    stateInput.parentElement.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value="";
     emailInput.value="";
     phoneInput.value="";
     referralInput.value="";
+    maritalInput.value = "";
+    anniversaryInput.value = "";
+    addressInput.value = "";
     passwordInput.value = "";
+    dobInput.value = "";
+    genderInput.value = "";
+    countryInput.value = "";
+    stateInput.value = "";
+    cityInput.value = "";
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
     signupButton.innerHTML = "Join account";
@@ -187,6 +135,14 @@ async function navigateToOtpScreen(body){
     const emailInput = document.querySelector("#qb-email");
     const phoneInput = document.querySelector("#qb-phone");
     const referralInput = document.querySelector("#qb-referral");
+    const dobInput = document.querySelector("#qb-date-of-birth");
+    const genderInput = document.querySelector("#qb-gender");
+    const cityInput = document.querySelector("#qb-city");
+    const countryInput = document.querySelector("#qb-country");
+    const stateInput = document.querySelector("#qb-state");
+    const addressInput = document.querySelector("#qb-address");
+    const maritalInput = document.querySelector("#qb-marital-status");
+    const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -198,6 +154,15 @@ async function navigateToOtpScreen(body){
     emailInput.parentElement.classList.add("d-none");
     phoneInput.parentElement.classList.add("d-none");
     referralInput.parentElement.classList.add("d-none");
+    addressInput.parentElement.classList.add("d-none");
+    maritalInput.parentElement.parentElement.classList.add("d-none");
+    anniversaryInput.parentElement.classList.add("d-none");
+    dobInput.parentElement.classList.add("d-none");
+    genderInput.parentElement.parentElement.classList.add("d-none");
+    countryInput.parentElement.parentElement.classList.add("d-none");
+    cityInput.parentElement.parentElement.classList.add("d-none");
+    stateInput.parentElement.parentElement.classList.add("d-none");
+
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
     passwordInput.setAttribute("placeholder", "****");
@@ -261,7 +226,7 @@ async function handleOtpVerify(otp){
     }
 }
 
-async function handleSignup({name, email, phone, password, referral}){
+async function handleSignup({name, email, phone, referral , password, city, dob, address, gender, country, state}){
     const signupButton = document.querySelector("#qb-signup-btn");
     const errorWrap = document.querySelector(".qb-general-error");
 
@@ -276,9 +241,16 @@ async function handleSignup({name, email, phone, password, referral}){
             "phone": phone,
             "password": password,
             "deviceId": null,
-            "referralCode": referral ? referral?.toUpperCase() : null
+            "referralCode": referral ? referral?.toUpperCase() : null,
+            "dateOfBirth": dob,
+            "address": address,
+            "gender": gender,
+            "state": state,
+            "city": city,
+            "country": country,
         });
         let response = await apiPost(url, data);
+        // let response = {message: "success", body: {customerId: "ABC"}}
         if(response?.message==="success"){
             console.log("response: ", response);
             userData = {name, email, phone};
@@ -327,12 +299,28 @@ async function onSignupFormSubmit(){
     const phoneInput = document.querySelector("#qb-phone");
     const passwordInput = document.querySelector("#qb-password");
     const referralInput = document.querySelector("#qb-referral");
+    const dobInput = document.querySelector("#qb-date-of-birth");
+    const genderInput = document.querySelector("#qb-gender");
+    const cityInput = document.querySelector("#qb-city");
+    const countryInput = document.querySelector("#qb-country");
+    const addressInput = document.querySelector("#qb-address");
+    const maritalInput = document.querySelector("#qb-marital-status");
+    const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    const stateInput = document.querySelector("#qb-state");
 
     let name = nameInput.value;
     let email = emailInput.value;
     let phone = phoneInput.value;
     let password = passwordInput.value;
     let referral = referralInput.value;
+    let dob = dobInput.value;
+    let gender = genderInput.value;
+    let city = selectedCity;
+    let address = addressInput.value;
+    let country = countryInput.value;
+    let maritalStatus = maritalInput.value;
+    let anniversary = anniversaryInput.value;
+    let state = selectedState?.label
 
     let isNameValid, isEmailValid, isPhoneValid, isPasswordValid = false;
 
@@ -348,12 +336,17 @@ async function onSignupFormSubmit(){
     if(password?.length) isPasswordValid = await passwordValidation(password);
     else isPasswordValid = false;
 
-    if(isNameValid && isEmailValid && isPhoneValid && isPasswordValid){
+    if(isNameValid && isEmailValid && isPhoneValid && isPasswordValid && dob && gender && city&& state){
         handleSignup({name, email, phone, password, referral});
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
         passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
         phoneInput.parentElement.classList.remove('qb-input-error');
+        cityInput.parentElement.parentElement.classList.remove('qb-input-error');
+        genderInput.parentElement.parentElement.classList.remove('qb-input-error');
+        dobInput.parentElement.classList.remove('qb-input-error');
+        countryInput.parentElement.parentElement.classList.remove('qb-input-error');
+        stateInput.parentElement.parentElement.classList.remove("qb-input-error");
     }
     else{
         if(!isNameValid){
@@ -384,6 +377,36 @@ async function onSignupFormSubmit(){
             phoneInput.parentElement.classList.add('qb-input-error');
         }
         else phoneInput.parentElement.classList.remove('qb-input-error');
+        if (!city) {
+            let errorMessage = "City cannot be empty. Please select a city.";
+            cityInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            cityInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else cityInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!state) {
+            let errorMessage = "State cannot be empty. Please enter a valid state.";
+            stateInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            stateInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else stateInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!selectedCountry) {
+            let errorMessage = "Country cannot be empty. Please select a country.";
+            countryInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            countryInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else countryInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!gender) {
+            let errorMessage = "Gender cannot be empty. Please select a value.";
+            genderInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            genderInput.parentElement.parentElement.classList.add('qb-input-error');
+        }
+        else genderInput.parentElement.parentElement.classList.remove('qb-input-error');
+        if (!dob) {
+            let errorMessage = "Birth date cannot be empty. Please select a value.";
+            dobInput.nextElementSibling.innerHTML = errorMessage;
+            dobInput.parentElement.classList.add('qb-input-error');
+        }
+        else dobInput.parentElement.classList.remove('qb-input-error');
     }
 }
 
@@ -453,12 +476,232 @@ function resendClickListener(){
     resendButton.addEventListener("click", onResendClick);
 }
 
+function closeSelectOptions(optionsWrap, type) {
+    if(optionsWrap) optionsWrap.classList.remove("qb-select-active");
+    if (type === "COUNTRY") countrySelectOpen = false;
+    else if(type==="STATE") stateSelectOpen = false;
+    else if (type === "CITY") citiesSelctOpen = false;
+    else if (type === "GENDER") genderSelectOpen = false;
+}
+
+function showSelectOptions(optionsWrap, type) {
+    optionsWrap.classList.add("qb-select-active");
+    if (type === "COUNTRY") countrySelectOpen = true;
+    else if(type==="STATE") stateSelectOpen = true;
+    else if (type === "CITY") citiesSelctOpen = true;
+    else if (type === "GENDER") genderSelectOpen = true;
+}
+
+function onCountrySelect(data){
+    const stateInput = document.getElementById("qb-state");
+    const cityInput = document.getElementById("qb-city");
+    stateInput.value = "";
+    cityInput.value = "";
+    selectedState = null;
+    selectedCity = null;
+    selectedCountry = {label: data.value, value: data.iso};
+    statesInCountry = STATES_LIST[data.iso];
+    console.log("clicked: ", selectedCountry, citiesInState)
+}
+
+function onStateSelect(data){
+    const cityInput = document.getElementById("qb-city");
+    cityInput.value = "";
+    selectedCity = null;
+    selectedState = {label: data.value, value: data.id};
+    citiesInState = CITIES_LIST[data.id];
+    console.log("clicked: ", selectedState, citiesInState);
+}
+
+function onMaritalChange(data){
+    const anniversaryInput = document.getElementById("qb-anniversary-date");
+
+    anniversaryInput.value = "";
+    if(data.value==="Married") anniversaryInput.parentElement.classList.remove("d-none");
+    else anniversaryInput.parentElement.classList.add("d-none");
+}
+
+function handleOptionClick(e) {
+    const optionsWrap = e.target.parentElement.parentElement;
+    const selectParent = optionsWrap.parentElement;
+    const selectInput = selectParent.querySelector(".qb-select-input");
+    const type = selectParent.dataset.type;
+    let selectedValue = e.target?.dataset?.value;
+    if(type==="COUNTRY") onCountrySelect(e.target.dataset);
+    else if(type==="CITY") selectedCity = selectedValue;
+    if(type==="STATE") onStateSelect(e.target.dataset);
+    else if(type==="MARITAL") onMaritalChange(e.target.dataset);
+    console.log("Click: ", selectInput, selectedValue);
+    selectInput.value = selectedValue;
+    closeSelectOptions(optionsWrap, type);
+}
+
+function handleSelectClick(e) {
+    const selectParent = e.target.parentElement;
+    const type = selectParent.dataset.type;
+    const optionsWrap = selectParent.querySelector(".qb-options-wrapper");
+    if (optionsWrap.classList.contains("qb-select-active")) closeSelectOptions(optionsWrap, type);
+    else showSelectOptions(optionsWrap, type);
+}
+
+function selectBoxListener() {
+    const selectElements = document.querySelectorAll(".qb-select-element");
+    selectElements.forEach(selectElement => {
+        const selectParent = selectElement.parentElement;
+        const options = selectParent.querySelectorAll(".qb-option-wrap");
+        selectElement.addEventListener("click", handleSelectClick);
+        if (options?.length) options.forEach(option => option.addEventListener("click", handleOptionClick));
+    })
+}
+
+function loadStateOptions() {
+    const optionsWrap = document.querySelector(".qb-state-options-wrapper");
+    const stateOptionContent = `<div class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                               ${statesOptions.map((state, i) => {
+        return (
+            ` <div class="qb-option-wrap px-4 py-2" data-value="${state.label}" data-id="${state.value}" data-index="${i}">
+                                        <p class="qb-option-text mb-0">${state.label}</p>
+                                    </div>`
+        )
+    }).join("")
+        }
+                            </div>`;
+    optionsWrap.innerHTML = stateOptionContent;
+    showSelectOptions(optionsWrap, "STATE");
+    const options = optionsWrap.querySelectorAll(".qb-option-wrap");
+    if (options?.length) options.forEach(option => option.addEventListener("click", handleOptionClick));
+}
+
+function removeStateOptions(){
+    const optionsWrap = document.querySelector(".qb-state-options-wrapper");
+    closeSelectOptions(optionsWrap, "STATE");
+    optionsWrap.innerHTML = "";
+}
+
+function handleStateInput(e){
+    let value = e.target.value;
+    if(value?.length && value.length>1){
+        console.log("Val: ", value);
+        if(!stateOptionsLoader){
+            statesOptions = [];
+            stateOptionsLoader = true;
+            statesInCountry.forEach(country=>{
+                if(country.label.toLowerCase().includes(value.toLowerCase())) statesOptions.push(country);
+            });
+            if(statesOptions?.length) loadStateOptions();
+            stateOptionsLoader = false;
+        }
+    }
+    else if(!value || !value.length)removeStateOptions();
+}
+
+function stateInputListener(){
+    const stateInput = document.getElementById("qb-state");
+    stateInput.addEventListener("input", handleStateInput);
+}
+
+function loadCountryOptions() {
+    const optionsWrap = document.querySelector(".qb-country-options-wrapper");
+    const countryOptionContent = `<div class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                               ${countryOptions.map((country, i) => {
+        return (
+            ` <div class="qb-option-wrap px-4 py-2" data-value="${country.label}" data-iso="${country.value}" data-index="${i}">
+                                        <p class="qb-option-text mb-0">${country.label}</p>
+                                    </div>`
+        )
+    }).join("")
+        }
+                            </div>`;
+    optionsWrap.innerHTML = countryOptionContent;
+    showSelectOptions(optionsWrap, "COUNTRY");
+    const options = optionsWrap.querySelectorAll(".qb-option-wrap");
+    if (options?.length) options.forEach(option => option.addEventListener("click", handleOptionClick));
+}
+
+function removeCountryOptions(){
+    const optionsWrap = document.querySelector(".qb-country-options-wrapper");
+    closeSelectOptions(optionsWrap, "COUNTRY");
+    optionsWrap.innerHTML = "";
+}
+
+function handleCountryInput(e){
+    let value = e.target.value;
+    if(value?.length && value.length>3){
+        console.log("Val: ", value);
+        if(!countryOptionsLoader){
+            countryOptions = [];
+            countryOptionsLoader = true;
+            COUNTRIES_LIST.forEach(country=>{
+                if(country.label.toLowerCase().includes(value.toLowerCase())) countryOptions.push(country);
+            });
+            if(countryOptions?.length) loadCountryOptions();
+            countryOptionsLoader = false;
+        }
+    }
+    else if(!value || !value.length)removeCountryOptions();
+}
+
+function countryInputListener(){
+    const countryInput = document.getElementById("qb-country");
+    countryInput.addEventListener("input", handleCountryInput);
+}
+
+function loadCityOptions() {
+    const optionsWrap = document.querySelector(".qb-city-options-wrapper");
+    const cityOptionContent = `<div class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                               ${cityOptions.map((city, i) => {
+        return (
+            ` <div class="qb-option-wrap px-4 py-2" data-value="${city.label}" data-lat="${city.lat}" data-long="${city.long}" data-id="${city.value}" data-index="${i}">
+                                        <p class="qb-option-text mb-0">${city.label}</p>
+                                    </div>`
+        )
+    }).join("")
+        }
+                            </div>`;
+    optionsWrap.innerHTML = cityOptionContent;
+    showSelectOptions(optionsWrap, "CITY");
+    const options = optionsWrap.querySelectorAll(".qb-option-wrap");
+    if (options?.length) options.forEach(option => option.addEventListener("click", handleOptionClick));
+}
+
+function removeCityOptions(){
+    const optionsWrap = document.querySelector(".qb-city-options-wrapper");
+    closeSelectOptions(optionsWrap, "CITY");
+    optionsWrap.innerHTML = "";
+}
+
+function handleCityInput(e){
+    let value = e.target.value;
+    if(value?.length && value.length>2){
+        console.log("city: ", value, citiesInState);
+        if(!cityOptionsLoader){
+            cityOptions = [];
+            cityOptionsLoader = true;
+            citiesInState.forEach(city=>{
+                if(city.label.toLowerCase().includes(value.toLowerCase())) cityOptions.push(city);
+            });
+            if(cityOptions?.length) loadCityOptions();
+            cityOptionsLoader = false;
+        }
+    }
+    else if(!value || !value.length)removeCityOptions();
+}
+
+function cityInputListener(){
+    const cityInput = document.getElementById("qb-city");
+    cityInput.addEventListener("input", handleCityInput);
+}
+
 function startApp() {
     checkQuery();
     eyeBtnListener();
     signupButtonListener();
     resendClickListener();
     onBackdropClick();
+    countryInputListener();
+    stateInputListener();
+    cityInputListener();
+    selectBoxListener();
 }
 
 window.addEventListener("load", startApp);

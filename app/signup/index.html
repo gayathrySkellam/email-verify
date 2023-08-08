@@ -104,6 +104,57 @@
                                                     <p class="qb-input-error-message pt-1"></p>
                                                 </div>
                                             </div>
+                                            <div class="col-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="address" class="pb-1">Address</label>
+                                                    <textarea name="address" id="qb-address" rows="2"></textarea>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="country" class="pb-1">Country</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="COUNTRY">
+                                                        <input type="text" name="country" id="qb-country"
+                                                            class="qb-select-input" placeholder="India">
+                                                        <!-- <div class="qb-select-element qb-country-select position-absolute w-100 h-100"></div> -->
+                                                        <div
+                                                            class="qb-options-wrapper qb-country-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="state" class="pb-1">State</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="STATE">
+                                                        <input type="text" name="state" id="qb-state"
+                                                            class="qb-select-input" placeholder="Karnataka">
+                                                        <div
+                                                            class="qb-options-wrapper qb-state-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="city" class="pb-1">City</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="CITY">
+                                                        <input type="text" name="city" id="qb-city"
+                                                            class="qb-select-input" placeholder="Bangalore">
+                                                        <!-- <div class="qb-select-element qb-city-select position-absolute w-100 h-100"></div> -->
+                                                        <div
+                                                            class="qb-options-wrapper qb-city-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-12">
                                                 <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
                                                     <label for="password" class="pb-1">Password</label>
@@ -135,6 +186,83 @@
                                                     <label for="referral" class="pb-1">Referral Code</label>
                                                     <input type="text" name="referral" id="qb-referral"
                                                             placeholder="AXJBXY">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="date-of-birth" class="pb-1">Date of birth</label>
+                                                    <input type="date" name="date-of-birth" id="qb-date-of-birth"
+                                                        placeholder="01/12/1990">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="gender" class="pb-1">Gender*</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="GENDER">
+                                                        <input type="text" name="gender" id="qb-gender"
+                                                            class="qb-select-input" placeholder="Select">
+                                                        <div
+                                                            class="qb-select-element qb-gender-select position-absolute w-100 h-100">
+                                                        </div>
+                                                        <div
+                                                            class="qb-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                            <div
+                                                                class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                                                                <div class="qb-option-wrap px-4 py-2" data-value="Male">
+                                                                    <p class="qb-option-text mb-0">Male</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Female">
+                                                                    <p class="qb-option-text mb-0">Female</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Prefer not to answer/other">
+                                                                    <p class="qb-option-text mb-0">Prefer not to answer/other</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="marital-status" class="pb-1">Marital status</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="MARITAL">
+                                                        <input type="text" name="marital-status" id="qb-marital-status"
+                                                            class="qb-select-input" placeholder="Select">
+                                                        <div
+                                                            class="qb-select-element qb-marital-status-select position-absolute w-100 h-100">
+                                                        </div>
+                                                        <div
+                                                            class="qb-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                            <div
+                                                                class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                                                                <div class="qb-option-wrap px-4 py-2" data-value="Single">
+                                                                    <p class="qb-option-text mb-0">Single</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Married">
+                                                                    <p class="qb-option-text mb-0">Married</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Other">
+                                                                    <p class="qb-option-text mb-0">Other</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch d-none">
+                                                    <label for="anniversary-date" class="pb-1">Anniversary date</label>
+                                                    <input type="date" name="anniversary-date" id="qb-anniversary-date"
+                                                        placeholder="01/12/1990">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -142,7 +270,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="w-100 pt-md-3 pt-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-end">
-                                                    <div class="qb-btn-wrapper pe-2 d-none d-md-flex">
+                                                    <div class="qb-btn-wrapper pe-3 d-none d-md-flex">
                                                         <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn" >Download Qffer</a>
                                                     </div>
                                                     <div class="qb-btn-wrapper">
@@ -179,6 +307,7 @@
     </div>
     <script src="../../config.js"></script>
     <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/countryList.js"></script>
     <script src="./assets/js/app.js"></script>
 </body>
 
