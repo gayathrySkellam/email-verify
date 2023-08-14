@@ -84,6 +84,7 @@ async function resetScreen(){
     const stateInput = document.querySelector("#qb-state");
     const zipcodeInput = document.querySelector("#qb-zipcode");
     const addressInput = document.querySelector("#qb-address");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -105,6 +106,7 @@ async function resetScreen(){
     stateInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
     zipcodeInput.parentElement.classList.remove("d-none");
+    subscribeBtn.parentElement.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value="";
     emailInput.value="";
@@ -117,6 +119,7 @@ async function resetScreen(){
     stateInput.value="";
     cityInput.value="";
     zipcodeInput.value="";
+    subscribeBtn.checked = true;
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password*";
     signupButton.innerHTML = "Join account";
@@ -136,6 +139,7 @@ async function navigateToOtpScreen(body){
     const stateInput = document.querySelector("#qb-state");
     const zipcodeInput = document.querySelector("#qb-zipcode");
     const addressInput = document.querySelector("#qb-address");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -152,6 +156,7 @@ async function navigateToOtpScreen(body){
     genderInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
     stateInput.parentElement.parentElement.classList.add("d-none");
+    subscribeBtn.parentElement.parentElement.classList.add("d-none");
     zipcodeInput.parentElement.classList.add("d-none");
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
@@ -219,6 +224,7 @@ async function handleOtpVerify(otp){
 async function handleSignup({name, email, phone, password, referral, city, dob, address, gender, state, zipcode}){
     const signupButton = document.querySelector("#qb-signup-btn");
     const errorWrap = document.querySelector(".qb-general-error");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
 
     if(!apiLoader && storeId){
         apiLoader = true;
@@ -237,7 +243,8 @@ async function handleSignup({name, email, phone, password, referral, city, dob, 
             "gender": gender,
             "referralCode": referral ? referral?.toUpperCase() : null,
             "state": state,
-            "zipCode": zipcode
+            "zipCode": zipcode,
+            "acceptChannelCommunications": subscribeBtn.checked
         });
         let response = await apiPost(url, data);
         // let response = {message: "success", body: {customerId: "X"}}
@@ -515,7 +522,7 @@ function handleOptionClick(e) {
     const type = selectParent.dataset.type;
     let selectedValue = e.target?.dataset?.value;
     if(type==="COUNTRY") onCountrySelect(e.target.dataset);
-    if(type==="STATE") onStateSelect(e.target.dataset);
+    else if(type==="STATE") onStateSelect(e.target.dataset);
     else if(type==="CITY") selectedCity = selectedValue;
     else if(type==="MARITAL") onMaritalChange(e.target.dataset);
     else if(type==="COUNTRY_CODE") onCountryCodeSelect(e.target.dataset);

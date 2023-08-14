@@ -24,6 +24,7 @@ let statesOptions=[];
 let cityOptionsLoader=false;
 let stateOptionsLoader = false;
 let countryOptionsLoader = false;
+let phoneCountryCode = "1";
 
 function onCounterRun(){
     const resendCounter = document.querySelector(".qb-counter-wrap");
@@ -85,6 +86,7 @@ async function resetScreen(){
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const stateInput = document.querySelector("#qb-state");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
 
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
@@ -99,7 +101,7 @@ async function resetScreen(){
 
     nameInput.parentElement.classList.remove("d-none");
     emailInput.parentElement.classList.remove("d-none");
-    phoneInput.parentElement.classList.remove("d-none");
+    phoneInput.parentElement.parentElement.classList.remove("d-none");
     referralInput.parentElement.classList.remove("d-none");
     maritalInput.parentElement.parentElement.classList.remove("d-none");
     addressInput.parentElement.classList.remove("d-none");
@@ -108,6 +110,8 @@ async function resetScreen(){
     countryInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
     stateInput.parentElement.parentElement.classList.remove("d-none");
+    subscribeBtn.parentElement.parentElement.classList.remove("d-none");
+
     resentOtpWrap.classList.add("d-none");
     nameInput.value="";
     emailInput.value="";
@@ -122,6 +126,7 @@ async function resetScreen(){
     countryInput.value = "";
     stateInput.value = "";
     cityInput.value = "";
+    subscribeBtn.checked = true;
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
     signupButton.innerHTML = "Join account";
@@ -140,6 +145,7 @@ async function navigateToOtpScreen(body){
     const cityInput = document.querySelector("#qb-city");
     const countryInput = document.querySelector("#qb-country");
     const stateInput = document.querySelector("#qb-state");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
     const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
@@ -152,7 +158,7 @@ async function navigateToOtpScreen(body){
 
     nameInput.parentElement.classList.add("d-none");
     emailInput.parentElement.classList.add("d-none");
-    phoneInput.parentElement.classList.add("d-none");
+    phoneInput.parentElement.parentElement.classList.add("d-none");
     referralInput.parentElement.classList.add("d-none");
     addressInput.parentElement.classList.add("d-none");
     maritalInput.parentElement.parentElement.classList.add("d-none");
@@ -162,6 +168,8 @@ async function navigateToOtpScreen(body){
     countryInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
     stateInput.parentElement.parentElement.classList.add("d-none");
+    subscribeBtn.parentElement.parentElement.classList.add("d-none");
+
 
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
@@ -178,7 +186,7 @@ async function handleResendOtp(){
     if(!isResendDisabled){
         let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/create/phone/verify`;
         let data = JSON.stringify({
-            "value": userData.phone
+            "value": `${phoneCountryCode}${userData.phone}`
         });
         let response = await apiPost(url, data);
         if(response?.message==="success"){
@@ -197,7 +205,7 @@ async function handleOtpVerify(otp){
         signupButton.classList.add("qb-btn-loading");
         let url = `${API_BASE_URL[ENV]}/api-v1-0/customer/web/create/phone/verify/${otp}`;
         let data = JSON.stringify({
-            "value": userData.phone
+            "value": `${phoneCountryCode}${userData.phone}`
         });
         let response = await apiPost(url, data);
         if(response?.message==="success"){
@@ -226,9 +234,10 @@ async function handleOtpVerify(otp){
     }
 }
 
-async function handleSignup({name, email, phone, referral , password, city, dob, address, gender, country, state}){
+async function handleSignup({name, email, phone, referral , password, city, dob, address, gender, country, state, anniversary, maritalStatus}){
     const signupButton = document.querySelector("#qb-signup-btn");
     const errorWrap = document.querySelector(".qb-general-error");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
 
     if(!apiLoader && storeId){
         apiLoader = true;
@@ -238,7 +247,7 @@ async function handleSignup({name, email, phone, referral , password, city, dob,
         let data = JSON.stringify({
             "name": name,
             "email": email.toLowerCase(),
-            "phone": phone,
+            "phone": `${phoneCountryCode}${phone}`,
             "password": password,
             "deviceId": null,
             "referralCode": referral ? referral?.toUpperCase() : null,
@@ -248,6 +257,9 @@ async function handleSignup({name, email, phone, referral , password, city, dob,
             "state": state,
             "city": city,
             "country": country,
+            "maritalStatus": maritalStatus,
+            "anniversaryDate": anniversary,
+            "acceptChannelCommunications": subscribeBtn.checked
         });
         let response = await apiPost(url, data);
         // let response = {message: "success", body: {customerId: "ABC"}}
@@ -337,11 +349,11 @@ async function onSignupFormSubmit(){
     else isPasswordValid = false;
 
     if(isNameValid && isEmailValid && isPhoneValid && isPasswordValid && dob && gender && city&& state){
-        handleSignup({name, email, phone, password, referral});
+        handleSignup({name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus, referral});
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
         passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
-        phoneInput.parentElement.classList.remove('qb-input-error');
+        phoneInput.parentElement.parentElement.classList.remove('qb-input-error');
         cityInput.parentElement.parentElement.classList.remove('qb-input-error');
         genderInput.parentElement.parentElement.classList.remove('qb-input-error');
         dobInput.parentElement.classList.remove('qb-input-error');
@@ -373,10 +385,10 @@ async function onSignupFormSubmit(){
         if(!isPhoneValid){
             let errorMessage = "Phone number cannot be empty. Please enter a value.";
             if(phone?.length) errorMessage = await returnErrorTexts(phone, "phone");
-            phoneInput.nextElementSibling.innerHTML = errorMessage;
-            phoneInput.parentElement.classList.add('qb-input-error');
+            phoneInput.parentElement.nextElementSibling.innerHTML = errorMessage;
+            phoneInput.parentElement.parentElement.classList.add('qb-input-error');
         }
-        else phoneInput.parentElement.classList.remove('qb-input-error');
+        else phoneInput.parentElement.parentElement.classList.remove('qb-input-error');
         if (!city) {
             let errorMessage = "City cannot be empty. Please select a city.";
             cityInput.parentElement.nextElementSibling.innerHTML = errorMessage;
@@ -521,6 +533,10 @@ function onMaritalChange(data){
     else anniversaryInput.parentElement.classList.add("d-none");
 }
 
+function onCountryCodeSelect(data){
+    phoneCountryCode = data.code;
+}
+
 function handleOptionClick(e) {
     const optionsWrap = e.target.parentElement.parentElement;
     const selectParent = optionsWrap.parentElement;
@@ -529,8 +545,9 @@ function handleOptionClick(e) {
     let selectedValue = e.target?.dataset?.value;
     if(type==="COUNTRY") onCountrySelect(e.target.dataset);
     else if(type==="CITY") selectedCity = selectedValue;
-    if(type==="STATE") onStateSelect(e.target.dataset);
+    else if(type==="STATE") onStateSelect(e.target.dataset);
     else if(type==="MARITAL") onMaritalChange(e.target.dataset);
+    else if(type==="COUNTRY_CODE") onCountryCodeSelect(e.target.dataset);
     console.log("Click: ", selectInput, selectedValue);
     selectInput.value = selectedValue;
     closeSelectOptions(optionsWrap, type);

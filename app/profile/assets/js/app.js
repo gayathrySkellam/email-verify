@@ -74,6 +74,7 @@ async function resetScreen() {
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const stateInput = document.querySelector("#qb-state");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
     // const zipcodeInput = document.querySelector("#qb-zipcode");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
@@ -97,6 +98,7 @@ async function resetScreen() {
     countryInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
     stateInput.parentElement.parentElement.classList.remove("d-none");
+    subscribeBtn.parentElement.parentElement.classList.remove("d-none");
     // zipcodeInput.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value = "";
@@ -111,6 +113,7 @@ async function resetScreen() {
     countryInput.value = "";
     stateInput.value = "";
     cityInput.value = "";
+    subscribeBtn.checked = true;
     // zipcodeInput.value = "";
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
@@ -132,6 +135,7 @@ async function navigateToOtpScreen(body) {
     const addressInput = document.querySelector("#qb-address");
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -150,6 +154,7 @@ async function navigateToOtpScreen(body) {
     countryInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
     stateInput.parentElement.parentElement.classList.add("d-none");
+    subscribeBtn.parentElement.parentElement.classList.add("d-none");
 
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
@@ -214,8 +219,9 @@ async function handleOtpVerify(otp) {
     }
 }
 
-async function handleUpdate({ name, email, phone, password, city, dob, address, gender, country, state  }) {
+async function handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus  }) {
     console.log("data: ");
+    const subscribeBtn =document.querySelector("#qb-checkbox-input");
     // console.table({ name, email, phone, password, city, dob, address, gender, state, zipcode  });
     const signupButton = document.querySelector("#qb-signup-btn");
     const errorWrap = document.querySelector(".qb-general-error");
@@ -235,6 +241,9 @@ async function handleUpdate({ name, email, phone, password, city, dob, address, 
             "state": state,
             "city": city,
             "country": country,
+            "maritalStatus": maritalStatus,
+            "anniversaryDate": anniversary,
+            "acceptChannelCommunications": subscribeBtn.checked
         };
         if(!customerInfo.isPasswordSet) body["password"] = password;
         let data = JSON.stringify(body)
@@ -320,7 +329,7 @@ async function onSignupFormSubmit() {
 
 
     if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city&& state) {
-        handleUpdate({ name, email, phone, password, city, dob, address, gender, state});
+        handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus});
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
         passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
@@ -480,7 +489,7 @@ async function checkCustomerDetails(){
         handleMerchantBranding(response.body);
         setCustomerData(response.body);
     }
-    else triggerErrorModal("Oops!", "We were unable to fetch your profile details. Please try again after sometime or use Qffer app to complete your profile.");
+    else triggerErrorModal("Invalid link.", "Oops! this link seems to be expired or broken, You can complete your profile using the Qffer app. Download Qffer and begin your personal saving experience today");
 }
 
 function generateModal(title, message){
@@ -627,7 +636,7 @@ function handleOptionClick(e) {
     let selectedValue = e.target?.dataset?.value;
     if(type==="COUNTRY") onCountrySelect(e.target.dataset);
     else if(type==="CITY") selectedCity = selectedValue;
-    if(type==="STATE") onStateSelect(e.target.dataset);
+    else if(type==="STATE") onStateSelect(e.target.dataset);
     else if(type==="MARITAL") onMaritalChange(e.target.dataset);
     console.log("Click: ", selectInput, selectedValue);
     selectInput.value = selectedValue;

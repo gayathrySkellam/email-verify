@@ -46,9 +46,19 @@
              -14px -14px 28px #ffffff;
     /* overflow: hidden; */
 }
+.qb-country-code-select-wrapper{
+    width: 80px;
+}
+.qb-country-code-options-wrap{
+    width: max-content;
+}
 .qb-circle-bg{
     top: -56%;
     left: -38%;
+}
+.qb-card-icon-wrap{
+    border-radius: 32px;
+    overflow: hidden;
 }
 ::-webkit-datetime-edit-text { color: #7d8383;}
 ::-webkit-datetime-edit-month-field { color: #7d8383; }
