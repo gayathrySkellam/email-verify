@@ -75,7 +75,7 @@ async function resetScreen() {
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const stateInput = document.querySelector("#qb-state");
     const subscribeBtn =document.querySelector("#qb-checkbox-input");
-    // const zipcodeInput = document.querySelector("#qb-zipcode");
+    const referralInput = document.querySelector("#qb-referral");
     const titleElement = document.querySelectorAll(".qb-signup-title-text");
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
@@ -99,7 +99,7 @@ async function resetScreen() {
     cityInput.parentElement.parentElement.classList.remove("d-none");
     stateInput.parentElement.parentElement.classList.remove("d-none");
     subscribeBtn.parentElement.parentElement.classList.remove("d-none");
-    // zipcodeInput.parentElement.classList.remove("d-none");
+    referralInput.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value = "";
     emailInput.value = "";
@@ -114,7 +114,7 @@ async function resetScreen() {
     stateInput.value = "";
     cityInput.value = "";
     subscribeBtn.checked = true;
-    // zipcodeInput.value = "";
+    referralInput.value = "";
     passwordInput.setAttribute("placeholder", "*********");
     passwordInput.parentElement.previousElementSibling.innerHTML = "Password";
     signupButton.innerHTML = "Join account";
@@ -140,6 +140,7 @@ async function navigateToOtpScreen(body) {
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
     const resentOtpWrap = document.querySelector(".qb-resend-wrap");
+    const referralInput = document.querySelector("#qb-referral");
     customerId = body.customerId;
     pageType = "VERIFY_OTP";
 
@@ -155,6 +156,7 @@ async function navigateToOtpScreen(body) {
     cityInput.parentElement.parentElement.classList.add("d-none");
     stateInput.parentElement.parentElement.classList.add("d-none");
     subscribeBtn.parentElement.parentElement.classList.add("d-none");
+    referralInput.parentElement.classList.add("d-none");
 
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
@@ -219,7 +221,7 @@ async function handleOtpVerify(otp) {
     }
 }
 
-async function handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus  }) {
+async function handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus, referral  }) {
     console.log("data: ");
     const subscribeBtn =document.querySelector("#qb-checkbox-input");
     // console.table({ name, email, phone, password, city, dob, address, gender, state, zipcode  });
@@ -243,7 +245,8 @@ async function handleUpdate({ name, email, phone, password, city, dob, address, 
             "country": country,
             "maritalStatus": maritalStatus,
             "anniversaryDate": anniversary,
-            "acceptChannelCommunications": subscribeBtn.checked
+            "acceptChannelCommunications": subscribeBtn.checked,
+            "referralCode": referral ? referral?.toUpperCase() : null
         };
         if(!customerInfo.isPasswordSet) body["password"] = password;
         let data = JSON.stringify(body)
@@ -304,7 +307,7 @@ async function onSignupFormSubmit() {
     const maritalInput = document.querySelector("#qb-marital-status");
     const anniversaryInput = document.querySelector("#qb-anniversary-date");
     const stateInput = document.querySelector("#qb-state");
-    // const zipcodeInput = document.querySelector("#qb-zipcode");
+    const referralInput = document.querySelector("#qb-referral");
 
     let name = nameInput.value;
     let email = emailInput.value;
@@ -317,7 +320,7 @@ async function onSignupFormSubmit() {
     let country = countryInput.value;
     let maritalStatus = maritalInput.value;
     let anniversary = anniversaryInput.value;
-    // let zipcode = zipcodeInput.value;
+    let referral = referralInput.value;
     let state = selectedState?.label
 
     let isNameValid, isEmailValid, isPasswordValid = false;
@@ -329,7 +332,7 @@ async function onSignupFormSubmit() {
 
 
     if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city&& state) {
-        handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus});
+        handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus, referral});
         nameInput.parentElement.classList.remove('qb-input-error');
         emailInput.parentElement.classList.remove('qb-input-error');
         passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
@@ -402,10 +405,10 @@ async function onSignupFormSubmit() {
         // if (!isZipcodeValid) {
         //     let errorMessage = "Zipcode is required. Please enter a valid zipcode.";
         //     if(zipcode && zipcode.length) errorMessage = "Invalid zipcode. Please enter a valid zipcode";
-        //     zipcodeInput.nextElementSibling.innerHTML = errorMessage;
-        //     zipcodeInput.parentElement.classList.add('qb-input-error');
+        //     referral.nextElementSibling.innerHTML = errorMessage;
+        //     referral.parentElement.classList.add('qb-input-error');
         // }
-        // else zipcodeInput.parentElement.classList.remove('qb-input-error');
+        // else referral.parentElement.classList.remove('qb-input-error');
     }
 }
 
@@ -438,6 +441,13 @@ function setCustomerData(data){
     const passwordInput = document.querySelector("#qb-password");
     const dobInput = document.querySelector("#qb-date-of-birth");
     const genderInput = document.querySelector("#qb-gender");
+    const addressInput = document.querySelector("#qb-address");
+    const cityInput = document.querySelector("#qb-city");
+    const countryInput = document.querySelector("#qb-country");
+    const stateInput = document.querySelector("#qb-state");
+    const referralInput = document.querySelector("#qb-referral");
+    const maritalInput = document.querySelector("#qb-marital-status");
+    const anniversaryInput = document.querySelector("#qb-anniversary-date");
     customerInfo = data;
     if(data.name) nameInput.value = data.name;
     if(data.email) {
@@ -457,6 +467,16 @@ function setCustomerData(data){
     }
     if(data.gender) genderInput.value = data.gender;
     if(data.dateOfBirth) dobInput.value = data.dateOfBirth;
+    if(data.address) addressInput.value = data.address;
+    if(data.country) countryInput.value = data.country;
+    if(data.state) stateInput.value = data.state;
+    if(data.city) cityInput.value = data.city;
+    if(data.referralCode) referralInput.value = data.referralCode;
+    if(data.maritalStatus){
+        maritalInput.value = data.maritalStatus;
+        if(data.maritalStatus==="Married") anniversaryInput.parentElement.classList.remove("d-none");
+    }
+    if(data.anniversary) anniversaryInput.value = data.anniversary;
     removeLoadAnimations();
 }
 
