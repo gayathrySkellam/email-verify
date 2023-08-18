@@ -1,4 +1,4 @@
-const ENV = "qa";
+const ENV = "prod";
 const API_BASE_URL = {
     "dev": "https://dev.qffer.in/qbshopper",
     "qa": "https://qa.qffer.in/qbshopper",
