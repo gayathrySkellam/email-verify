@@ -298,7 +298,7 @@ async function onSignupFormSubmit() {
     let password = passwordInput.value;
     let dob = dobInput.value;
     let gender = genderInput.value;
-    let city = selectedCity;
+    let city = cityInput.value;
     let zipcode = zipcodeInput.value;
     let address = addressInput.value;
     let state = selectedState?.label
@@ -811,7 +811,7 @@ function startApp() {
     onBackdropClick();
     stateInputListener();
     setSelectedCountry();
-    cityInputListener();
+    // cityInputListener();
     selectBoxListener();
 }
 

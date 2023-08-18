@@ -310,7 +310,7 @@ async function onSignupFormSubmit(){
     let referral = referralInput.value;
     let dob = dobInput.value;
     let gender = genderInput.value;
-    let city = selectedCity;
+    let city = cityInput.value;
     let address = addressInput.value;
     let zipcode = zipcodeInput.value;
     let state = selectedState?.label
@@ -699,7 +699,7 @@ function startApp() {
     resendClickListener();
     onBackdropClick();
     setSelectedCountry();
-    cityInputListener();
+    // cityInputListener();
     stateInputListener();
     selectBoxListener();
 }
