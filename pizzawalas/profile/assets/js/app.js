@@ -77,6 +77,7 @@ async function resetScreen() {
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
     const resentOtpWrap = document.querySelector(".qb-resend-wrap");
+    const referralInput = document.querySelector("#qb-referral");
     pageType = "UPDATE";
     customerId = null;
     userData = null;
@@ -95,6 +96,7 @@ async function resetScreen() {
     stateInput.parentElement.parentElement.classList.remove("d-none");
     cityInput.parentElement.parentElement.classList.remove("d-none");
     subscribeBtn.parentElement.parentElement.classList.remove("d-none");
+    referralInput.parentElement.classList.remove("d-none");
     resentOtpWrap.classList.add("d-none");
     nameInput.value = "";
     emailInput.value = "";
@@ -130,6 +132,7 @@ async function navigateToOtpScreen(body) {
     const signupButton = document.querySelector("#qb-signup-btn");
     const passwordInput = document.querySelector("#qb-password");
     const resentOtpWrap = document.querySelector(".qb-resend-wrap");
+    const referralInput = document.querySelector("#qb-referral");
 
     customerId = body.customerId;
     pageType = "VERIFY_OTP";
@@ -144,6 +147,7 @@ async function navigateToOtpScreen(body) {
     stateInput.parentElement.parentElement.classList.add("d-none");
     cityInput.parentElement.parentElement.classList.add("d-none");
     subscribeBtn.parentElement.parentElement.classList.add("d-none");
+    referralInput.parentElement.classList.add("d-none");
 
     resentOtpWrap.classList.remove("d-none");
     passwordInput.value = "";
