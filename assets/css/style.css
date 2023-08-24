@@ -53,29 +53,42 @@ input[type=number] {
     background-color: #F1F2F2;
     transition: 0.5s ease-out;
 }
-.qb-loader-border{
-    width: 320px;
-    height: 320px;
-    border-radius: 200px;
-    box-shadow: -32px -32px 64px rgba(231, 86, 58, 0), 32px 32px 64px rgba(219, 39, 38, 0);
+.qb-loader-bubble {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    z-index: 1;
+    transform: translateX(-50%);
 }
-.qb-preloader-icon-path{
-    stroke-dasharray: 1009.24;
-    stroke-dashoffset: 1009.24;
-    fill-opacity: 0;
-    animation: preloaderAnime 2s ease forwards;
+.qb-loader-bubble::before, 
+.qb-loader-bubble::after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    animation: bubbleRotate 1.6s infinite cubic-bezier(0.77, 0, 0.175, 1);
 }
-@keyframes preloaderAnime{
-    40%{
-        stroke-opacity: 1;
-        fill-opacity: 0;
+.qb-loader-bubble::before {
+    background-color: #E64980;
+}
+.qb-loader-bubble::after {
+    background-color: #FF8787;
+    animation-delay: 1s;
+}
+@keyframes bubbleRotate {
+    0%, 100% {
+      left: 70px;
     }
-    90%{
-        stroke-dashoffset: 0;
+    25% {
+      transform: scale(.3);
     }
-    100%{
-        stroke-opacity: 0;
-        fill-opacity: 1;
+    50% {
+      left: 0%;
+    }
+    75% {
+      transform: scale(1);
     }
 }
 .qb-remove-loader{
@@ -302,6 +315,12 @@ button.qb-primary-btn.qb-btn-loading:hover{
     background-color: #F1F2F2;
     box-shadow:  14px 14px 28px #1C282620;
     transition: 0.4s ease-in;
+}
+.qb-popup-illustration{
+    width: 350px;
+    max-width: 60%;
+    height: auto;
+    object-fit: contain;
 }
 .qb-modal-active{
     opacity: 1;

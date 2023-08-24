@@ -18,5 +18,19 @@ const CONFIG = {
             "amx": "DOU",
             "ref": ""
         }
+    },
+    "PIZZAWALADEMO": {
+        "dev": {
+            "amx": "BSA",
+            "ref": ""
+        },
+        "qa": {
+            "amx": "BSA",
+            "ref": ""
+        },
+        "prod": {
+            "amx": "DPZ",
+            "ref": ""
+        }
     }
 };

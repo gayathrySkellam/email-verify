@@ -62,9 +62,31 @@ function onResendClick(){
     }
 }
 
-function triggerSuccessModal(){
+function generateModal(title, message, type, isQffer){
+    let content = `<div class="qb-popup-illustration-wrapper p-5 w-100 d-flex align-items-center justify-content-center"><img src="${type==="SUCCESS"? '../../assets/images/success_anime.gif': '../../assets/images/general.png'}" alt="success" class="qb-popup-illustration"></div><h3 class="qb-title mb-0 pb-3">${title}</h3>
+        <p class="qb-description mb-0 pb-4">${message}</p>
+        ${isQffer? `<div class="w-100 d-flex justify-content-end">
+        <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download Qffer</a>
+    </div>`: ''}`;
+    return content;
+}
+
+function triggerSuccessModal(isQffer){
     const backdrop = document.querySelector(".qb-modal-backdrop");
     const modal = document.querySelector(".qb-modal-container");
+    modal.innerHTML = generateModal("Welcome Aboard", "Congratulations on signing up for our loyalty program. Stay Tuned! Exciting offers and loyalty rewards are on your way.", "SUCCESS", isQffer)
+
+    backdrop.classList.remove("d-none");
+    modal.classList.remove("d-none");
+    setTimeout(() => {
+        modal.classList.add("qb-modal-active");
+    }, 200);
+}
+
+function triggerErrorModal(title, message, isQffer){
+    const backdrop = document.querySelector(".qb-modal-backdrop");
+    const modal = document.querySelector(".qb-modal-container");
+    modal.innerHTML = generateModal(title, message, "ERROR", isQffer)
 
     backdrop.classList.remove("d-none");
     modal.classList.remove("d-none");

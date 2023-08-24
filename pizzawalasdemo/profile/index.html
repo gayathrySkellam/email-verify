@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <title>Qffer | Profile</title>
+</head>
+
+<body>
+    <div class="conatainer-fluid px-0 qb-main-body-wrap d-flex flex-column align-items-stretch position-relative">
+        <div class="qb-loader qb-wait-loader d-flex align-items-center justify-content-center position-fixed" id="qb-loader-wrap">
+            <div class="qb-loader-border d-flex align-items-center justify-content-center">
+                <svg id="qb-preloader-icon" width="214" height="212" viewBox="0 0 214 212" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M103.223 8.36551C72.8143 9.05463 43.6788 17.4545 17.8584 32.9752C15.1144 34.6266 13.3885 35.7317 13.3947 35.8372C13.4009 35.8931 22.1484 50.8613 32.8391 69.1075C43.5298 87.3537 52.2959 102.328 52.3145 102.384C52.3455 102.471 52.2586 102.496 51.7744 102.558C40.0779 104.091 27.2019 109.126 16.2753 116.44C14.8226 117.408 13.3636 118.457 13.3574 118.532C13.3512 118.656 16.6044 120.891 18.5414 122.102C27.3199 127.577 37.0421 131.588 46.3235 133.568C54.3508 135.282 62.0926 135.524 69.9088 134.313C70.4676 134.226 70.9456 134.177 70.9704 134.208C70.9953 134.233 79.1095 148.077 89.0055 164.976C98.9016 181.869 107.016 195.67 107.041 195.645C107.065 195.614 115.161 181.794 125.045 164.926C134.922 148.058 143.024 134.233 143.049 134.208C143.074 134.177 143.552 134.226 144.11 134.313C147.488 134.841 150.331 135.052 153.851 135.052C157.334 135.052 159.942 134.86 163.443 134.344C174.798 132.662 187.308 127.652 197.868 120.543C199.352 119.544 200.662 118.6 200.662 118.532C200.656 118.42 198.085 116.632 196.316 115.496C189.021 110.833 180.783 107.077 172.88 104.805C169.453 103.824 165.467 102.98 162.245 102.558C161.866 102.508 161.674 102.458 161.686 102.409C161.699 102.372 170.458 87.3971 181.162 69.1323C191.865 50.8675 200.618 35.8869 200.625 35.8434C200.637 35.7069 197.564 33.7823 194.404 31.9322C170.179 17.7835 143.235 9.82446 115.08 8.5083C111.691 8.3531 106.556 8.29101 103.223 8.36551ZM146.705 50.9048C153.367 63.8304 158.818 74.4218 158.818 74.4528C158.818 74.4901 142.149 102.986 142.086 103.054C142.074 103.061 141.391 103.21 140.572 103.377C131.868 105.159 122.816 108.71 114.311 113.683C112.156 114.943 109.4 116.738 107.848 117.886C107.419 118.203 107.047 118.457 107.01 118.457C106.979 118.457 106.556 118.172 106.078 117.824C104.197 116.452 101.515 114.732 99.1251 113.354C90.7749 108.543 81.984 105.128 73.4041 103.371C72.6094 103.21 71.9451 103.061 71.9327 103.054C71.9203 103.042 68.1519 96.604 63.5515 88.7505C55.6732 75.3096 55.1951 74.4715 55.3007 74.3907C55.6608 74.1238 134.519 27.3381 134.556 27.3753C134.581 27.3939 140.044 37.9853 146.705 50.9048ZM107.736 119.097C112.206 122.406 118.979 126.205 124.877 128.707C126.603 129.44 126.609 129.44 126.584 129.502C126.491 129.763 107.01 162.902 106.979 162.865C106.898 162.778 87.4224 129.502 87.4224 129.458C87.4224 129.434 87.8632 129.235 88.4033 129.018C90.7625 128.055 94.5558 126.236 97.0453 124.877C100.367 123.064 103.93 120.835 106.203 119.146C106.612 118.842 106.966 118.588 106.991 118.588C107.022 118.581 107.357 118.817 107.736 119.097Z" fill="#231F20"/>
+                    <path d="M86.4801 74.5407C83.0655 75.0684 80.4394 77.5517 79.6324 80.9911C79.533 81.3946 79.5144 81.7237 79.5206 82.7915C79.5206 83.9897 79.533 84.1449 79.682 84.685C80.1166 86.2806 80.7995 87.4912 81.9046 88.5963C84.5121 91.1975 88.5661 91.7439 91.8006 89.9373C93.1851 89.1612 94.5323 87.7147 95.2152 86.2744C95.7056 85.2314 95.9291 84.2939 95.9788 83.0647C96.0285 81.6988 95.836 80.6 95.3269 79.4204C93.8494 75.9996 90.1678 73.9633 86.4801 74.5407Z" fill="#231F20"/>
+                    <path d="M125.013 74.5343C122.287 74.9751 119.922 76.7569 118.774 79.2402C118.289 80.2894 118.091 81.1586 118.047 82.394C118.01 83.3935 118.072 84.0144 118.308 84.9022C118.687 86.3487 119.612 87.8511 120.76 88.8817C124.02 91.8058 129.03 91.6816 132.121 88.5961C133.226 87.491 133.922 86.2618 134.338 84.6849C134.549 83.884 134.605 82.2202 134.456 81.3324C133.872 77.9737 131.339 75.3414 127.993 74.615C127.242 74.4536 125.764 74.4163 125.013 74.5343Z" fill="#231F20"/>
+                    <path d="M101.785 0.0594118C71.2216 0.953406 41.639 9.4029 15.409 24.7436C12.5283 26.426 11.2122 27.2455 5.32051 31.0326L2.17911 33.0503L2.3219 33.2986C2.40261 33.4352 10.7155 47.6274 20.7978 64.8368C30.8801 82.0462 39.193 96.2383 39.2737 96.3749L39.4165 96.6295L38.3797 96.9275C28.6265 99.7709 17.9544 104.955 9.70357 110.853C8.76612 111.523 0.0062083 118.383 0 118.452C0 118.495 8.12666 124.902 9.25036 125.74C10.2871 126.51 13.3106 128.528 14.7137 129.384C20.326 132.824 26.4039 135.785 32.3452 137.989C42.4896 141.745 52.8574 143.564 62.2568 143.229C63.4053 143.185 64.8519 143.111 65.4603 143.061C66.0749 143.012 66.5778 142.974 66.584 142.987C66.5902 142.993 75.6667 158.489 86.7609 177.424C97.849 196.36 106.944 211.874 106.969 211.899C106.994 211.924 116.101 196.428 127.214 177.455L147.416 142.962L147.726 142.999C147.9 143.018 148.67 143.074 149.44 143.123C159.969 143.806 170.976 142.012 182.214 137.772C188.329 135.469 194.618 132.333 200.255 128.782C201.701 127.87 203.856 126.404 204.905 125.616C206.159 124.679 214 118.495 214 118.452C213.994 118.39 205.339 111.604 204.47 110.977C196.182 105.004 185.268 99.7088 175.403 96.8654L174.577 96.6295L174.726 96.3811C174.807 96.2383 183.176 81.9468 193.326 64.6195C203.477 47.2921 211.79 33.1 211.796 33.0813C211.815 33.0503 205.743 29.1329 203.309 27.6056C195.437 22.6576 186.944 18.2187 178.29 14.5247C158.374 6.02558 137.179 1.19553 115.381 0.177369C111.47 -0.00267118 105.659 -0.0523376 101.785 0.0594118ZM114.419 8.4282C116.915 8.55857 119.069 8.68894 120.596 8.81311C146.727 10.8494 171.79 18.6905 194.382 31.8893C195.996 32.833 198.02 34.0623 199.764 35.1611L200.646 35.7199L200.503 35.9682C200.422 36.1048 191.638 51.104 180.978 69.3005C170.318 87.4908 161.608 102.391 161.627 102.409C161.639 102.422 162.123 102.503 162.701 102.583C173.094 104.036 184.119 108.09 194.258 114.193C196.753 115.695 200.59 118.278 200.59 118.458C200.59 118.563 198.287 120.184 196.555 121.301C188.304 126.616 179.01 130.688 170.064 132.905C165.519 134.034 161.267 134.668 156.697 134.904C155.139 134.984 151.054 134.947 149.682 134.835C147.559 134.668 143.61 134.196 143.157 134.053C143.076 134.034 139.184 140.634 125.184 164.523C115.356 181.298 107.248 195.143 107.155 195.292L106.994 195.552L88.9711 164.79C74.9341 140.839 70.9236 134.034 70.8429 134.059C70.3897 134.196 66.435 134.668 64.318 134.835C62.9459 134.947 58.8609 134.984 57.3026 134.904C48.164 134.432 39.1185 132.153 29.7502 127.969C24.2372 125.504 18.271 122.083 13.9625 118.917L13.3416 118.458L14.0432 117.943C15.0117 117.229 17.3087 115.689 18.687 114.832C23.4984 111.84 29.1976 109.009 34.3629 107.035C40.118 104.843 45.6931 103.378 51.3054 102.583C51.8827 102.503 52.3608 102.422 52.3794 102.409C52.3918 102.391 43.6816 87.4971 33.0219 69.3005C22.3623 51.104 13.5775 36.1048 13.4968 35.9682L13.354 35.7199L14.0804 35.2605C22.5796 29.8717 31.3333 25.3148 40.5712 21.4718C59.2706 13.6928 79.4848 9.24148 99.7984 8.4344C100.723 8.39715 101.698 8.3599 101.971 8.34749C103.114 8.30403 113.252 8.36611 114.419 8.4282Z" fill="#F2B705"/>
+                    <path d="M94.7971 50.8056C72.9936 63.7561 55.1634 74.3847 55.1758 74.4282C55.182 74.4655 58.9504 80.9221 63.5508 88.7632L71.9071 103.03L73.3723 103.328C83.1317 105.29 93.7479 109.716 102.93 115.645C104.141 116.427 105.935 117.663 106.612 118.178L106.965 118.451L106.798 118.594C106.407 118.917 104.737 120.078 103.489 120.897C98.8015 123.983 93.214 126.938 88.2226 128.981C87.7569 129.167 87.3658 129.334 87.3596 129.341C87.3472 129.353 91.7551 136.908 97.1625 146.134C102.564 155.353 107.003 162.878 107.027 162.853C107.121 162.747 126.658 129.359 126.633 129.341C126.627 129.334 126.236 129.167 125.77 128.981C119.81 126.547 113.161 122.884 108.064 119.227L107.015 118.482L107.183 118.339C107.276 118.259 107.772 117.892 108.288 117.526C114.105 113.385 121.542 109.462 128.539 106.836C132.798 105.24 137.15 103.992 141.241 103.197L142.08 103.036L150.473 88.7073L158.873 74.3785L146.723 50.8118C140.037 37.8489 134.543 27.2451 134.505 27.2514C134.468 27.2514 116.601 37.8489 94.7971 50.8056ZM89.6753 74.6331C91.2087 75.0304 92.438 75.7257 93.5244 76.8184C94.7102 77.998 95.449 79.3638 95.7967 81.0276C95.9767 81.8595 95.9891 83.3247 95.8339 84.1318C95.4552 86.0439 94.4681 87.745 93.0526 88.9246C91.7923 89.98 90.4079 90.5946 88.7813 90.8243C88.1294 90.9174 86.6705 90.8678 86.0496 90.7312C83.1255 90.0917 80.7788 87.9995 79.8724 85.2058C79.5806 84.3242 79.4937 83.7282 79.4937 82.6232C79.4999 81.127 79.742 80.1088 80.4063 78.8299C81.3748 76.9674 83.0945 75.496 85.0936 74.8255C86.0683 74.4965 86.5836 74.4282 87.8749 74.453C88.893 74.4717 89.1414 74.4965 89.6753 74.6331ZM127.707 74.5275C130.24 74.9621 132.494 76.6384 133.63 78.9292C134.207 80.0902 134.45 81.0462 134.512 82.3438C134.661 85.5411 132.854 88.5707 129.936 90.0421C129.408 90.309 128.421 90.6381 127.794 90.7622C127.13 90.8926 125.323 90.8802 124.659 90.7374C122.151 90.1973 120.096 88.6452 118.966 86.435C118.302 85.1375 118.06 84.138 118.06 82.6852C118.053 80.3757 118.854 78.4263 120.462 76.8184C121.747 75.5395 123.324 74.751 125.156 74.4717C125.603 74.3972 127.167 74.4344 127.707 74.5275Z" fill="#F2B705"/>
+                </svg>                    
+            </div>
+        </div>
+        <!-- <header class="qb-signup-header position-fixed d-none d-md-flex flex-column align-items-stretch">
+            <div class="d-flex justify-content-center conatainer-fluid">
+                <div class="qb-content-container px-3 py-4">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.3513 0.875358C9.32858 0.935019 7.34038 1.26423 5.42765 1.8558C3.57028 2.43084 1.81425 3.24021 0.156698 4.28534L0 4.38382L0.01797 4.41401C0.0273144 4.42982 1.15295 6.35189 2.51939 8.68368C3.88583 11.0162 5.00356 12.926 5.00356 12.9282C5.00356 12.9311 4.959 12.939 4.90509 12.9462C4.2366 13.0339 3.48115 13.2272 2.77528 13.4917C1.90913 13.8159 0.999131 14.2882 0.270269 14.7928C0.0963191 14.9128 -0.000718799 14.9861 0.00575039 14.9919C0.0309084 15.0156 0.222828 15.1507 0.3709 15.2499C1.53392 16.0298 2.87376 16.6128 4.15179 16.896C4.83608 17.0476 5.46072 17.113 6.1177 17.103C6.53101 17.0965 6.85016 17.0692 7.25915 17.0067C7.34757 16.993 7.38566 16.9901 7.38854 16.9952C7.39141 16.9995 8.43008 18.7727 9.69732 20.9356C10.9646 23.0985 12.0025 24.8682 12.0047 24.8682C12.0068 24.8682 13.0448 23.0985 14.312 20.9356C15.5793 18.7727 16.6179 16.9995 16.6208 16.9952C16.6237 16.9901 16.6618 16.993 16.7502 17.0067C17.3942 17.1051 18.0347 17.1296 18.65 17.08C20.1681 16.9556 21.7825 16.3993 23.2675 15.4893C23.4961 15.3491 23.9454 15.0458 24.0036 14.9919C24.0136 14.9825 23.7434 14.7899 23.4911 14.6267C22.801 14.1811 22.0168 13.7864 21.2448 13.4953C20.5462 13.2322 19.7742 13.0339 19.105 12.9462C19.0503 12.939 19.0058 12.9311 19.0058 12.9282C19.0058 12.926 20.1235 11.0162 21.4899 8.68368C22.8564 6.35189 23.982 4.42982 23.9914 4.41401L24.0093 4.38382L23.8526 4.28534C22.208 3.24812 20.4685 2.4445 18.6248 1.86946C16.8199 1.30592 14.9345 0.97599 13.029 0.889015C12.561 0.86817 11.8092 0.861701 11.3513 0.875358ZM17.0974 6.32745C17.9535 7.98788 18.6464 9.33994 18.6442 9.34569C18.6406 9.35432 16.5065 13.0001 16.5008 13.0065C16.5 13.0073 16.4282 13.0223 16.3419 13.0403C15.2155 13.2667 14.0482 13.7217 12.9592 14.3579C12.6674 14.529 12.3317 14.746 12.1111 14.9078L12.0047 14.9854L11.899 14.9078C11.6776 14.746 11.3419 14.529 11.0501 14.3579C9.95897 13.7203 8.79882 13.2682 7.66743 13.0403C7.58118 13.0231 7.5093 13.0073 7.50858 13.0065C7.4978 12.9936 5.36799 9.35072 5.36727 9.34353C5.36656 9.3385 7.60633 8.00441 10.4485 6.31595C14.7677 3.75127 15.5318 3.29915 15.539 3.30849C15.5433 3.31424 16.2449 4.67278 17.0974 6.32745ZM12.1017 15.0609C12.2217 15.1493 12.5165 15.3469 12.6882 15.454C13.1806 15.7603 13.7463 16.055 14.294 16.2893C14.3889 16.3295 14.4788 16.3669 14.4939 16.3727C14.5082 16.3777 14.5197 16.3849 14.519 16.3878C14.514 16.4007 12.0083 20.6768 12.0047 20.6768C12.0018 20.6768 9.49534 16.4007 9.49031 16.3878C9.48959 16.3849 9.50109 16.3777 9.51547 16.3727C9.53056 16.3669 9.62041 16.3295 9.71601 16.2893C10.2551 16.0586 10.8294 15.7603 11.3211 15.454C11.4929 15.3469 11.7876 15.1493 11.9076 15.0609C11.9587 15.0228 12.0025 14.9919 12.0047 14.9919C12.0068 14.9919 12.0507 15.0228 12.1017 15.0609Z" fill="#FCFCFC"/>
+                        <path d="M9.35583 9.35429C9.20135 9.38303 9.07489 9.43333 8.94771 9.5174C8.71563 9.67116 8.55612 9.90612 8.49576 10.1856C8.47277 10.292 8.47277 10.5061 8.49576 10.6124C8.54103 10.8194 8.63803 10.9997 8.78461 11.1463C8.93046 11.2914 9.11656 11.3927 9.32349 11.4373C9.39678 11.4531 9.59222 11.4596 9.6691 11.4488C9.91915 11.4136 10.1347 11.3029 10.3057 11.1219C10.4106 11.0112 10.4882 10.8804 10.5378 10.7303C10.5759 10.6167 10.5895 10.5255 10.5895 10.399C10.5895 10.1087 10.4853 9.85726 10.2798 9.65104C10.1282 9.50015 9.95867 9.40746 9.74742 9.36076C9.67054 9.34351 9.43343 9.3392 9.35583 9.35429Z" fill="#FCFCFC"/>
+                        <path d="M14.3053 9.35286C14.0732 9.39453 13.8936 9.48794 13.7298 9.65104C13.5703 9.81127 13.469 10.006 13.4323 10.223C13.4158 10.3178 13.4158 10.4802 13.4323 10.5751C13.5092 11.0328 13.8735 11.3827 14.3405 11.4488C14.4174 11.4596 14.6128 11.4531 14.6861 11.4373C14.7745 11.4179 14.8859 11.3776 14.9649 11.3367C15.2487 11.1887 15.4449 10.9293 15.5139 10.6124C15.5369 10.5061 15.5369 10.292 15.5139 10.1856C15.4686 9.97725 15.3723 9.79906 15.225 9.65176C15.0813 9.50734 14.9139 9.41393 14.7149 9.36651C14.6509 9.35142 14.6179 9.34783 14.4993 9.34567C14.4038 9.34423 14.342 9.34639 14.3053 9.35286Z" fill="#FCFCFC"/>
+                        </svg>                        
+                </div>
+            </div>
+        </header> -->
+        <div class="qb-signup-wrapper position-relative container-fluid px-0 d-flex flex-column flex-md-row justify-content-center align-items-stretch">
+            <div class="qb-signup-bg-wrap qb-signup-left position-absolute d-lg-block d-none">
+                <div class="w-100 h-100 qb-signup-bg"></div>
+            </div>
+            <div class="px-3 d-flex d-md-none flex-column align-items-center justify-content-center">
+                <img src="../../assets/images/Pizzawalas_VERTICAL-YELLOW-OUTLINE.png" alt="signup-mockup"
+                    class="qb-signup-sm-mockup">
+                <h3 class="qb-title pt-3 mb-0 qb-sm-signup-title qb-signup-title-text">Complete profile</h3>
+            </div>
+            <div class="position-relative qb-signup-content d-flex align-items-stretch justify-content-center">
+                <div class="qb-signup-left">
+                    <div class="w-100 h-100 d-lg-flex align-items-center justify-content-center d-none">
+                        <img src="../../assets/images/Pizzawalas_VERTICAL-YELLOW-OUTLINE.png" alt="signup-mockup"
+                            class="qb-signup-mockup">
+                    </div>
+                </div>
+                <div class="qb-signup-right">
+                    <div class="w-100 qb-overflow-wrap">
+                        <div class="w-100 d-flex align-items-md-center justify-content-center qb-form-wrap-scrollable">
+                            <div class="qb-form-wrap d-flex flex-column align-items-stretch">
+                                <form class="qb-signup-form px-md-5 py-5 d-flex flex-column align-items-stretch"
+                                    id="qb-signupform">
+                                    <h3 class="qb-title mb-0 pb-4 d-none d-md-block qb-signup-title-text">Complete
+                                        Profile</h3>
+                                    <div class="container-fluid px-0 pt-md-0">
+                                        <div class="row gy-2">
+                                            <div class="col-lg-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="name" class="pb-1">Name*</label>
+                                                    <input type="text" name="name" id="qb-name" placeholder="John Doe"
+                                                        required>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="email" class="pb-1">Email*</label>
+                                                    <input type="email" name="email" id="qb-email"
+                                                        placeholder="johndoe@gmail.com" required>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="phone" class="pb-1">Phone*</label>
+                                                    <input type="number" name="phone" id="qb-phone"
+                                                        placeholder="999 999 9999" required>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="password" class="pb-1">Password*</label>
+                                                    <div
+                                                        class="d-flex flex-column align-items-stretch position-relative">
+                                                        <input type="password" name="password" id="qb-password"
+                                                            placeholder="********" required>
+                                                        <div class="qb-eye-icon-wrap position-absolute d-flex h-100 align-items-center justify-content-center px-3"
+                                                            id="qb-eye-btn">
+                                                            <svg width="24" height="18" viewBox="0 0 24 18" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                    d="M1.60259 8.75C1.71897 8.95589 1.89014 9.24606 2.11427 9.59311C2.58113 10.316 3.27286 11.2779 4.17202 12.237C5.984 14.1698 8.54949 16 11.7499 16C14.9502 16 17.5157 14.1698 19.3277 12.237C20.2269 11.2779 20.9186 10.316 21.3855 9.59311C21.6096 9.24606 21.7808 8.95589 21.8971 8.75C21.7808 8.54411 21.6096 8.25394 21.3855 7.90689C20.9186 7.18402 20.2269 6.22205 19.3277 5.26296C17.5157 3.33017 14.9502 1.5 11.7499 1.5C8.54949 1.5 5.984 3.33017 4.17202 5.26296C3.27286 6.22205 2.58113 7.18402 2.11427 7.90689C1.89014 8.25394 1.71897 8.54411 1.60259 8.75ZM22.7499 8.75C23.4207 8.41459 23.4206 8.41433 23.4204 8.41404L23.419 8.41129L23.4159 8.40508L23.4052 8.38413C23.3961 8.36643 23.3831 8.34135 23.3661 8.30937C23.3323 8.24542 23.2828 8.15383 23.218 8.03855C23.0884 7.80811 22.8969 7.48239 22.6455 7.09311C22.1436 6.31598 21.3979 5.27795 20.422 4.23704C18.484 2.16983 15.5495 0 11.7499 0C7.95023 0 5.01572 2.16983 3.07771 4.23704C2.10186 5.27795 1.3561 6.31598 0.854208 7.09311C0.602797 7.48239 0.411355 7.80811 0.281728 8.03855C0.216886 8.15383 0.167427 8.24542 0.133585 8.30937C0.116662 8.34135 0.103636 8.36643 0.0945379 8.38413L0.0838363 8.40508L0.0806995 8.41129L0.0796857 8.4133L0.0793175 8.41404C0.0791721 8.41433 0.079042 8.41459 0.749862 8.75L0.0793175 8.41404C-0.0262553 8.62519 -0.0265308 8.87426 0.079042 9.08541L0.749862 8.75C0.079042 9.08541 0.0788966 9.08512 0.079042 9.08541L0.0796857 9.0867L0.0806995 9.08871L0.0838363 9.09492L0.0945379 9.11587C0.103636 9.13357 0.116662 9.15865 0.133585 9.19063C0.167427 9.25459 0.216886 9.34617 0.281728 9.46145C0.411355 9.69189 0.602797 10.0176 0.854208 10.4069C1.3561 11.184 2.10186 12.2221 3.07771 13.263C5.01572 15.3302 7.95023 17.5 11.7499 17.5C15.5495 17.5 18.484 15.3302 20.422 13.263C21.3979 12.2221 22.1436 11.184 22.6455 10.4069C22.8969 10.0176 23.0884 9.69189 23.218 9.46145C23.2828 9.34617 23.3323 9.25459 23.3661 9.19063C23.3831 9.15865 23.3961 9.13357 23.4052 9.11587L23.4159 9.09492L23.419 9.08871L23.4204 9.08596C23.4206 9.08567 23.4207 9.08541 22.7499 8.75ZM22.7499 8.75L23.4204 9.08596C23.526 8.87482 23.526 8.62519 23.4204 8.41404L22.7499 8.75ZM11.7499 6.49988C10.5072 6.49988 9.49986 7.50724 9.49986 8.74988C9.49986 9.99252 10.5072 10.9999 11.7499 10.9999C12.9925 10.9999 13.9999 9.99252 13.9999 8.74988C13.9999 7.50724 12.9925 6.49988 11.7499 6.49988ZM7.99986 8.74988C7.99986 6.67881 9.67879 4.99988 11.7499 4.99988C13.8209 4.99988 15.4999 6.67881 15.4999 8.74988C15.4999 10.8209 13.8209 12.4999 11.7499 12.4999C9.67879 12.4999 7.99986 10.8209 7.99986 8.74988Z"
+                                                                    fill="#4A9689" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-flex align-items-center qb-resend-wrap d-none">
+                                                    <p class="qb-tag pe-2 mb-0">Didn’t receive OTP?</p>
+                                                    <a
+                                                        class="qb-link qb-resend-otp-link d-flex align-items-center qb-link-disabled">Resend
+                                                        OTP <span class="qb-counter-wrap ps-1">(30s)</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="address" class="pb-1">Address</label>
+                                                    <textarea name="address" id="qb-address" rows="2"></textarea>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="city" class="pb-1">City*</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="CITY">
+                                                        <input type="text" name="city" id="qb-city"
+                                                            class="qb-select-input" placeholder="Beverly Hills">
+                                                        <div
+                                                            class="qb-options-wrapper qb-city-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="state" class="pb-1">State*</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="STATE">
+                                                        <input type="text" name="state" id="qb-state"
+                                                            class="qb-select-input" placeholder="Texas">
+                                                        <div
+                                                            class="qb-options-wrapper qb-state-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="zipcode" class="pb-1">Zip code*</label>
+                                                    <input type="text" name="zipcode" id="qb-zipcode"
+                                                        placeholder="40170">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="date-of-birth" class="pb-1">Date of birth*</label>
+                                                    <input type="date" name="date-of-birth" id="qb-date-of-birth"
+                                                        placeholder="01/12/1990">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="gender" class="pb-1">Gender*</label>
+                                                    <div class="d-flex align-items-stretch flex-column position-relative"
+                                                        data-type="GENDER">
+                                                        <input type="text" name="gender" id="qb-gender"
+                                                            class="qb-select-input" placeholder="Select">
+                                                        <div
+                                                            class="qb-select-element qb-gender-select position-absolute w-100 h-100">
+                                                        </div>
+                                                        <div
+                                                            class="qb-options-wrapper position-absolute w-100 d-flex flex-column align-items-stretch">
+                                                            <div
+                                                                class="qb-options-container py-2 d-flex align-items-stretch flex-column">
+                                                                <div class="qb-option-wrap px-4 py-2" data-value="Male">
+                                                                    <p class="qb-option-text mb-0">Male</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Female">
+                                                                    <p class="qb-option-text mb-0">Female</p>
+                                                                </div>
+                                                                <div class="qb-option-wrap px-4 py-2"
+                                                                    data-value="Prefer not to answer/other">
+                                                                    <p class="qb-option-text mb-0">Prefer not to answer/other</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="qb-input-wrap w-100 d-flex flex-column align-items-stretch">
+                                                    <label for="referral" class="pb-1">Referral Code/Number</label>
+                                                    <input type="text" name="referral" id="qb-referral"
+                                                        placeholder="ASXDEFG">
+                                                    <p class="qb-input-error-message pt-1"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="w-100 d-flex align-items-center pt-4">
+                                                    <label class="qb-checkbox-wrapper position-relative">
+                                                        <input checked="checked" type="checkbox" class="position-absolute" id="qb-checkbox-input">
+                                                        <div class="qb-checkmark position-relative"></div>
+                                                    </label>
+                                                    <p class="qb-info-tag ps-2 mb-0">Send me loyalty rewards, offers and updates via email and text.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="qb-input-error-message pt-1 qb-general-error"></p>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div
+                                                    class="w-100 pt-md-3 pt-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-end">
+                                                    <div class="qb-btn-wrapper">
+                                                        <button class="qb-btn qb-primary-btn" type="button"
+                                                            id="qb-signup-btn">
+                                                            Signup
+                                                            <span class="qb-btn-loader ms-2"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed qb-modal-backdrop d-none"></div>
+    <div class="position-fixed qb-modal-container d-none">
+        <h3 class="qb-title mb-0 pb-3">Welcome Aboard</h3>
+        <p class="qb-description mb-0 pb-4">
+            Congratulations on signing up! Download Qffer and begin your personal saving experience with Qffer.
+        </p>
+        <div class="w-100 d-flex justify-content-end">
+            <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download Qffer</a>
+        </div>
+    </div>
+    <script src="../../config.js"></script>
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/countryList.js"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>

@@ -38,27 +38,12 @@
 <body>
     <div class="conatainer-fluid px-0 qb-main-body-wrap d-flex flex-column align-items-stretch position-relative">
         <div class="qb-loader qb-wait-loader d-flex align-items-center justify-content-center position-fixed" id="qb-loader-wrap">
-            <div class="qb-loader-border d-flex align-items-center justify-content-center">
-                <svg id="qb-preloader-icon" width="214" height="208" viewBox="0 0 214 208" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path class="qb-preloader-icon-path"
-                        d="M209.631 197.777L212 199.094L210.846 197.517C197.461 179.251 193.994 155.743 200.772 134.133C206.763 115.053 206.998 94.6301 201.447 75.4172C195.897 56.2043 184.807 39.0533 169.564 26.1077C127.927 -9.30457 65.0882 -5.23639 28.3654 35.2338C12.5981 52.6279 3.33021 74.9389 2.13257 98.3852C0.934921 121.831 7.88121 144.971 21.7941 163.881C35.707 182.791 55.7305 196.309 78.4709 202.143C101.211 207.977 125.269 205.769 146.568 195.893C166.772 186.541 190.157 186.971 209.631 197.777ZM66.8698 68.5301C85.2994 49.1516 116.132 47.5134 136.548 64.7895C144.272 71.3259 149.873 80.0173 152.633 89.7528C155.393 99.4883 155.187 109.826 152.042 119.444C150.218 124.859 149.824 130.653 150.901 136.265C151.977 141.877 154.487 147.115 158.185 151.47L158.718 152.092L158.035 151.641C153.292 148.511 147.817 146.666 142.147 146.287C136.477 145.908 130.806 147.007 125.688 149.477C114.955 154.624 102.757 155.844 91.2171 152.926C79.6772 150.007 69.5262 143.134 62.5308 133.504C55.5353 123.873 52.1384 112.094 52.9312 100.218C53.724 88.3409 58.6563 77.1181 66.8698 68.5028V68.5301Z"
-                        stroke="url(#logo_fill_gradiant)" stroke-width="4" fill="url(#logo_fill_gradiant)"
-                        fill-opacity="0" />
-                    <defs>
-                        <linearGradient id="logo_fill_gradiant" x1="2" y1="25.3836" x2="235.916" y2="74.0022"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#DB2726" />
-                            <stop offset="1" stop-color="#F3864F" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
+            <div class="qb-loader-bubble position-relative d-flex align-items-center justify-content-center"></div>
         </div>
         <header class="qb-signup-header position-fixed d-none d-md-flex flex-column align-items-stretch">
             <div class="d-flex justify-content-center conatainer-fluid">
                 <div class="qb-content-container px-3 py-4">
-                    <svg class="qb-header-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="qb-header-logo d-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M23.7293 22.3745L24 22.525L23.8682 22.3448C22.3384 20.2573 21.9421 17.5707 22.7167 15.1009C23.4015 12.9203 23.4283 10.5863 22.794 8.39054C22.1596 6.19478 20.8922 4.23467 19.1502 2.75517C14.3916 -1.29195 7.21009 -0.827016 3.01319 3.79815C1.21121 5.78605 0.152024 8.33587 0.0151504 11.0154C-0.121723 13.695 0.672139 16.3395 2.26218 18.5007C3.85223 20.6618 6.14063 22.2067 8.73953 22.8735C11.3384 23.5403 14.0879 23.2879 16.522 22.1592C18.8311 21.0904 21.5037 21.1396 23.7293 22.3745ZM7.41369 7.60344C9.51994 5.38875 13.0436 5.20153 15.3769 7.17594C16.2597 7.92296 16.8997 8.91626 17.2152 10.0289C17.5306 11.1415 17.5071 12.3229 17.1477 13.4221C16.9391 14.041 16.8942 14.7032 17.0172 15.3446C17.1402 15.9859 17.427 16.5846 17.8498 17.0823L17.9106 17.1533L17.8326 17.1018C17.2905 16.7441 16.6648 16.5333 16.0168 16.4899C15.3688 16.4466 14.7206 16.5722 14.1357 16.8545C12.9091 17.4427 11.5151 17.5822 10.1962 17.2487C8.8774 16.9151 7.71728 16.1296 6.9178 15.029C6.11832 13.9284 5.7301 12.5822 5.8207 11.2249C5.91131 9.86753 6.47501 8.58493 7.41369 7.60031V7.60344Z"
                             fill="#FCFCFC" />
@@ -78,7 +63,7 @@
             <div class="position-relative qb-signup-content d-flex align-items-stretch justify-content-center">
                 <div class="qb-signup-left">
                     <div class="w-100 h-100 d-lg-flex align-items-center justify-content-center d-none">
-                        <img src="../../assets/images/signup-mockup.png" alt="signup-mockup"
+                        <img src="../../assets/images/laptop_illustration.png" alt="signup-mockup"
                             class="qb-signup-mockup qb-merchant-logo-replace">
                     </div>
                 </div>
@@ -302,7 +287,7 @@
                                             <div class="col-lg-12">
                                                 <div
                                                     class="w-100 pt-md-3 pt-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-end">
-                                                    <div class="qb-btn-wrapper pe-3 d-none d-md-flex">
+                                                    <div class="qb-btn-wrapper pe-3 d-none">
                                                         <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download
                                                             Qffer</a>
                                                     </div>
@@ -314,7 +299,7 @@
                                                         </button>
                                                     </div>
                                                     <div
-                                                        class="d-flex d-md-none pt-4 pb-5 align-items-center justify-content-center">
+                                                        class="d-flex d-none pt-4 pb-5 align-items-center justify-content-center">
                                                         <p class="qb-tag pe-3 mb-0">Already have an account</p>
                                                         <a class="qb-link qb-download-btn d-flex">Download Qffer</a>
                                                     </div>
@@ -332,7 +317,10 @@
     </div>
     <div class="position-fixed qb-modal-backdrop d-none"></div>
     <div class="position-fixed qb-modal-container d-none">
-        <h3 class="qb-title mb-0 pb-3">Welcome Aboard</h3>
+        <div class="qb-popup-illustration-wrapper pb-5 w-100 d-flex align-items-center justify-content-center">
+            <img src="../../assets/images/success_anime.gif" alt="success" class="qb-popup-illustration">
+        </div>
+        <h3 class="qb-title mb-0 pb-3 pt-5">Welcome Aboard</h3>
         <p class="qb-description mb-0 pb-4">
             Congratulations on signing up! Download Qffer and begin your personal saving experience with Qffer.
         </p>

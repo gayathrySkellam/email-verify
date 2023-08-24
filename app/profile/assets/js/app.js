@@ -330,7 +330,7 @@ async function onSignupFormSubmit() {
     if (password?.length) isPasswordValid = await passwordValidation(password);
     // if(zipcode&& zipcode.length) isZipcodeValid = await zipcodeValidation(zipcode);
 
-
+    // triggerSuccessModal();
     if (isNameValid && isEmailValid && isPasswordValid && dob && gender && city&& state) {
         handleUpdate({ name, email, phone, password, city, dob, address, gender, state, country, anniversary, maritalStatus, referral});
         nameInput.parentElement.classList.remove('qb-input-error');
@@ -365,13 +365,6 @@ async function onSignupFormSubmit() {
             passwordInput.parentElement.parentElement.classList.add('qb-input-error');
         }
         else passwordInput.parentElement.parentElement.classList.remove('qb-input-error');
-        // if (!isPhoneValid) {
-        //     let errorMessage = "This is required field. Please enter a value.";
-        //     if (phone?.length) errorMessage = await returnErrorTexts(phone, "phone");
-        //     phoneInput.nextElementSibling.innerHTML = errorMessage;
-        //     phoneInput.parentElement.classList.add('qb-input-error');
-        // }
-        // else phoneInput.parentElement.classList.remove('qb-input-error');
         if (!city) {
             let errorMessage = "City cannot be empty. Please select a city.";
             cityInput.parentElement.nextElementSibling.innerHTML = errorMessage;
@@ -402,13 +395,6 @@ async function onSignupFormSubmit() {
             dobInput.parentElement.classList.add('qb-input-error');
         }
         else dobInput.parentElement.classList.remove('qb-input-error');
-        // if (!isZipcodeValid) {
-        //     let errorMessage = "Zipcode is required. Please enter a valid zipcode.";
-        //     if(zipcode && zipcode.length) errorMessage = "Invalid zipcode. Please enter a valid zipcode";
-        //     referral.nextElementSibling.innerHTML = errorMessage;
-        //     referral.parentElement.classList.add('qb-input-error');
-        // }
-        // else referral.parentElement.classList.remove('qb-input-error');
     }
 }
 
@@ -509,22 +495,23 @@ async function checkCustomerDetails(){
         handleMerchantBranding(response.body);
         setCustomerData(response.body);
     }
-    else triggerErrorModal("Invalid link.", "Oops! this link seems to be expired or broken, You can complete your profile using the Qffer app. Download Qffer and begin your personal saving experience today");
+    // else triggerErrorModal("Invalid link.", "Oops! this link seems to be expired or broken, You can complete your profile using the Qffer app. Download Qffer and begin your personal saving experience today");
+    else triggerErrorModal("Invalid link.", "Oops! this link seems to be expired or broken, Please try again with another link.");
 }
 
-function generateModal(title, message){
-    let content = `<h3 class="qb-title mb-0 pb-3">${title}</h3>
-    <p class="qb-description mb-0 pb-4">${message}</p>
-    <div class="w-100 d-flex justify-content-end">
+function generateModal(title, message, type, isQffer){
+    let content = `<div class="qb-popup-illustration-wrapper p-5 w-100 d-flex align-items-center justify-content-center"><img src="${type==="SUCCESS"? '../../assets/images/success_anime.gif': '../../assets/images/general.png'}" alt="success" class="qb-popup-illustration"></div><h3 class="qb-title mb-0 pb-3">${title}</h3>
+        <p class="qb-description mb-0 pb-4">${message}</p>
+        ${isQffer? `<div class="w-100 d-flex justify-content-end">
         <a class="qb-btn qb-link-btn qb-ghost-btn qb-download-btn">Download Qffer</a>
-    </div>`;
+    </div>`: ''}`;
     return content;
 }
 
-function triggerSuccessModal(){
+function triggerSuccessModal(isQffer){
     const backdrop = document.querySelector(".qb-modal-backdrop");
     const modal = document.querySelector(".qb-modal-container");
-    modal.innerHTML = generateModal("Welcome Aboard", "Congratulations on signing up! Download Qffer and begin your personal saving experience with Qffer.")
+    modal.innerHTML = generateModal("Welcome Aboard", "Congratulations on signing up for our loyalty program. Stay Tuned! Exciting offers and loyalty rewards are on your way.", "SUCCESS", isQffer)
 
     backdrop.classList.remove("d-none");
     modal.classList.remove("d-none");
@@ -533,10 +520,10 @@ function triggerSuccessModal(){
     }, 200);
 }
 
-function triggerErrorModal(title, message){
+function triggerErrorModal(title, message, isQffer){
     const backdrop = document.querySelector(".qb-modal-backdrop");
     const modal = document.querySelector(".qb-modal-container");
-    modal.innerHTML = generateModal(title, message)
+    modal.innerHTML = generateModal(title, message, "ERROR", isQffer)
 
     backdrop.classList.remove("d-none");
     modal.classList.remove("d-none");
@@ -562,7 +549,7 @@ async function checkQuery() {
     }
     else{
         setTimeout(() => {
-            triggerErrorModal("Invalid link", "You seem to be using an invalid update link. Please use a valid link or download qffer to enjoy our services.");
+            triggerErrorModal("Invalid link", "Oops! this link seems to be expired or broken, Please try again with another link.");
         }, 1000);
     }
     if (query?.cx && query?.k){

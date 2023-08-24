@@ -435,8 +435,8 @@ function checkQuery() {
     //     storeReferral = query.ref;
     //     referralInput.value = query.ref;
     // }
-    storeId = CONFIG.PIZZAWALA[ENV].amx;
-    referralInput.value = CONFIG.PIZZAWALA[ENV].ref;
+    storeId = CONFIG.PIZZAWALADEMO[ENV].amx;
+    referralInput.value = CONFIG.PIZZAWALADEMO[ENV].ref;
 }
 
 function onFormSubmit(){
