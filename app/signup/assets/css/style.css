@@ -60,6 +60,23 @@
     border-radius: 32px;
     overflow: hidden;
 }
+.qb-md-header{
+    padding: 60px 0;
+    background: linear-gradient(60.67deg, #E64980 8.99%, #FF8787 90.01%);
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+}
+.qb-sm-header-image-wrap{
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+.qb-sm-header-image-wrap img{
+    height: 100%;
+    width: auto;
+    z-index: 0;
+    opacity: 0.2;
+}
 ::-webkit-datetime-edit-text { color: #7d8383;}
 ::-webkit-datetime-edit-month-field { color: #7d8383; }
 ::-webkit-datetime-edit-day-field { color: #7d8383; }
@@ -98,7 +115,8 @@
         background-color: #fff0;
     }
     .qb-signup-wrapper{
-        padding: 60px 0;
+        padding: 0;
+        padding-bottom: 80px;
         height: unset;
     }
     .qb-signup-content{
@@ -119,5 +137,10 @@
     h3.qb-title{
         font-size: 22px;
         line-height: 150%;
+    }
+    h3.qb-sm-signup-title{
+        font-size: 32px;
+        color: #f1f1f2;
+        font-weight: 800;
     }
 }

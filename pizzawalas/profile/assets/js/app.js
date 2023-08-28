@@ -219,7 +219,7 @@ async function handleUpdate({ name, email, phone, password, city, dob, address, 
     const errorWrap = document.querySelector(".qb-general-error");
     const subscribeBtn =document.querySelector("#qb-checkbox-input");
 
-    if(!apiLoader){
+    if(!apiLoader&& subscribeBtn.checked){
         apiLoader = true;
         errorWrap.classList.remove("qb-error-active");
         signupButton.classList.add("qb-btn-loading");
@@ -265,8 +265,8 @@ async function handleUpdate({ name, email, phone, password, city, dob, address, 
             apiLoader = false;
         }
     }
-    else{
-        errorWrap.innerHTML = "Something went wrong! Please try again after some time.";
+    else if(!subscribeBtn.checked){
+        errorWrap.innerHTML = "Please agree to receive loyalty reward communications if you wish to signup to our loyalty program.";
         errorWrap.classList.add("qb-error-active");
     }
 }

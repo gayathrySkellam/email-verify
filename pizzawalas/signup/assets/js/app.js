@@ -233,7 +233,7 @@ async function handleSignup({name, email, phone, password, referral, city, dob, 
     const errorWrap = document.querySelector(".qb-general-error");
     const subscribeBtn =document.querySelector("#qb-checkbox-input");
 
-    if(!apiLoader && storeId){
+    if(!apiLoader && storeId && subscribeBtn.checked){
         apiLoader = true;
         errorWrap.classList.remove("qb-error-active");
         signupButton.classList.add("qb-btn-loading");
@@ -274,6 +274,10 @@ async function handleSignup({name, email, phone, password, referral, city, dob, 
             signupButton.classList.remove("qb-btn-loading");
             apiLoader = false;
         }
+    }
+    else if(!subscribeBtn.checked){
+        errorWrap.innerHTML = "Please agree to receive loyalty reward communications if you wish to signup to our loyalty program.";
+        errorWrap.classList.add("qb-error-active");
     }
     else if(!storeId){
         errorWrap.innerHTML = "Signup link invalid. Please try again with another link.";
