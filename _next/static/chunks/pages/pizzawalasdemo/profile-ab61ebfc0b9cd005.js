@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[8175],{4477:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/pizzawalasdemo/profile",function(){return _(6887)}])},6887:function(n,u,_){"use strict";_.r(u);var i=_(5893);_(7294),u.default=()=>(0,i.jsx)("div",{})}},function(n){n.O(0,[9774,2888,179],function(){return n(n.s=4477)}),_N_E=n.O()}]);
